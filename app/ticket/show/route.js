@@ -1,8 +1,10 @@
 import Ember from 'ember';
-import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
+import TicketBaseRoute from '../route';
 
-export default Ember.Route.extend(AuthenticatedRouteMixin, {
-    model() {
-        return this.store.find('ticket', 269752);
+export default TicketBaseRoute.extend({
+    model: function(params) {
+        return this.store.find('ticket', params.ticket_id);
+    },
+    actions: {
     }
 });

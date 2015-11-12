@@ -29,7 +29,7 @@ export default Base.extend({
                 // console.log(error);
                 // console.log(response);
                 console.log(xhr.responseText);
-                console.log(xhr.getAllResponseHeaders());
+                // console.log(xhr.getAllResponseHeaders());
                 Ember.run(function() {
                     resolve(response);
                 });
@@ -38,7 +38,7 @@ export default Base.extend({
                 // console.log(status);
                 // console.log(error);
                 console.log(xhr.responseText);
-                console.log(xhr.getAllResponseHeaders());
+                // console.log(xhr.getAllResponseHeaders());
                 Ember.run(function() {
                     reject(response);
                 });

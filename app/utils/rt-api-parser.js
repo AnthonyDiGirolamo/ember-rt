@@ -16,7 +16,9 @@ function parseTicket(payload) {
         })
         .zipObject()
         .value();
-    // console.log(data);
+    data.id = data.id.replace("ticket/", "");
+    data = {"ticket": data};
+    console.log(data);
     return data;
 }
 
