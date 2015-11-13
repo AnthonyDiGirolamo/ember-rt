@@ -2,7 +2,7 @@ import Ember from 'ember';
 import Base from 'ember-simple-auth/authenticators/base';
 
 export default Base.extend({
-    tokenEndpoint: 'REST/1.0/',
+    tokenEndpoint: '/REST/1.0/',
 
     restore: function(data) {
         return new Ember.RSVP.Promise(function(resolve, reject) {
