@@ -1,5 +1,3 @@
-{{jump-to-ticket}}
-
 <p>
 Ticket Show
 </p>
@@ -29,6 +27,15 @@ Ticket Show
     <li>timeWorked:      {{model.timeWorked}}</li>
     <li>told:            {{model.told}}</li>
   </ul>
+
+<ul>
+{{#each model.messages as |message|}}
+<li>
+{{message.id}}
+{{message.name}}
+</li>
+{{/each}}
+</ul>
 {{/if}}
 
 {{outlet}}
