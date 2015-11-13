@@ -24,5 +24,5 @@ export default DS.Model.extend({
     timeWorked:      DS.attr('string'),
     told:            DS.attr('string'),
 
-    messages: DS.hasMany('messages')
+    messages: DS.hasMany('messages', {async: true})
 });

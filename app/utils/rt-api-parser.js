@@ -1,6 +1,6 @@
 import _ from 'lodash/lodash';
 
-function parseTicket(payload) {
+function parseTicket(payload, namespace) {
     let data = _.chain(payload.split('\n'))
         .reject((line) => {
             return !line.trim() || // blank line
@@ -17,11 +17,18 @@ function parseTicket(payload) {
         .zipObject()
         .value();
     data.id = data.id.replace("ticket/", "");
+    data.links = { "messages": namespace + "/ticket/" + data.id + "/history" };
     data = {"ticket": data};
-    console.log(data);
+    // console.log(data);
     return data;
 }
 
+function parseHistory(payload, namespace) {
+    console.log(payload);
+    return {};
+}
+
 export {
-  parseTicket
+  parseTicket,
+  parseHistory
 };
