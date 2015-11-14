@@ -47,7 +47,7 @@ function parseHistory(payload, namespace, ticket_id) {
         .collect((id_title_pair) => {
             return {'id': id_title_pair[0],
                     'title': id_title_pair[1],
-                    'links': {'content': namespace + "/ticket/" + ticket_id + "/history/id/" + id_title_pair[0]}
+                    'links': {'emails': namespace + "/ticket/" + ticket_id + "/history/id/" + id_title_pair[0]}
                    };
         })
         .value();
@@ -56,7 +56,20 @@ function parseHistory(payload, namespace, ticket_id) {
     return data;
 }
 
+function parseEmail(payload, namespace, message_id) {
+    // console.log(payload);
+
+    // let data = _.chain( payload.split('\n\n'))
+    //     .value();
+
+    let data = {"emails": [{"id": message_id, "body": payload}]};
+    console.log(data);
+
+    return data;
+}
+
 export {
-  parseTicket,
-  parseHistory
+    parseTicket,
+    parseHistory,
+    parseEmail
 };

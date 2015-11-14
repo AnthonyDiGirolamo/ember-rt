@@ -33,6 +33,11 @@ Ticket Show
 <li>
 {{message.id}}
 {{message.title}}
+{{#each message.emails as |email|}}
+<pre>
+{{email.body}}
+</pre>
+{{/each}}
 </li>
 {{/each}}
 </ul>
