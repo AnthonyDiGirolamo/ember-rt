@@ -20,8 +20,8 @@ module.exports = function(environment) {
   };
 
   ENV['ember-simple-auth'] = {
-    store: 'ember-simple-auth-session-store:local-storage',
-    authorizer: 'authorizer:rt',
+    // store: 'ember-simple-auth-session-store:local-storage',
+    // authorizer: 'authorizer:rt',
     // crossOriginWhitelist: ['https://rt*'],
     routeAfterAuthentication: '/'
   };

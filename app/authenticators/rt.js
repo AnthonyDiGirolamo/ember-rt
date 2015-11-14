@@ -5,7 +5,9 @@ export default Base.extend({
     tokenEndpoint: '/REST/1.0/',
 
     restore: function(data) {
-        return new Ember.RSVP.Promise(function(resolve, reject) {
+        console.log("restore...");
+        console.log(data);
+        return new Ember.RSVP.Promise((resolve, reject) => {
             if (!Ember.isEmpty(data.token)) {
                 resolve(data);
             } else {
@@ -15,6 +17,7 @@ export default Base.extend({
     },
 
     authenticate: function(options) {
+        console.log("authenticate");
         return new Ember.RSVP.Promise((resolve, reject) => {
             Ember.$.ajax({
                 url: this.tokenEndpoint,
@@ -22,7 +25,7 @@ export default Base.extend({
                 data: `user=${options.user}&pass=${options.password}`,
                 // contentType: 'application/json;charset=utf-8',
                 dataType: 'html'
-            }).then(function(response, textStatus, xhr) {
+            }).then((response, textStatus, xhr) => {
                 // console.log(xhr);
                 // console.log(xhr.id_token);
                 // console.log(status);
@@ -30,16 +33,16 @@ export default Base.extend({
                 // console.log(response);
                 console.log(xhr.responseText);
                 // console.log(xhr.getAllResponseHeaders());
-                Ember.run(function() {
+                Ember.run(() => {
                     resolve(response);
                 });
-            }, function(xhr, status, error) {
+            }, (xhr, status, error) => {
                 var response = xhr.responseText;
                 // console.log(status);
                 // console.log(error);
                 console.log(xhr.responseText);
                 // console.log(xhr.getAllResponseHeaders());
-                Ember.run(function() {
+                Ember.run(() => {
                     reject(response);
                 });
             });

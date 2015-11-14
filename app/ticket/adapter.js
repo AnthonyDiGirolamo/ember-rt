@@ -17,10 +17,16 @@ export default ApplicationAdapter.extend({
     },
 
     findRecord: function(store, type, id, snapshot) {
-        console.log([store, type, id, snapshot]);
+
+        // console.log("findRecord");
+        // console.log([store, type, id, snapshot]);
 
         // var url = [type.modelName, id].join('/');
         var url = `${this.namespace}/ticket/${id}/show`;
+
+        // console.log("url:");
+        // console.log(url);
+
 
         return new Ember.RSVP.Promise((resolve, reject) => {
             Ember.$.ajax(url, type.modelName, {
@@ -49,8 +55,15 @@ export default ApplicationAdapter.extend({
             });
         });
     },
+
     findHasMany: function(store, snapshot, url, relationship) {
-        url = this.urlPrefix(url, this.buildURL(type, id, null, 'findHasMany'));
+
+        // console.log("findHasMany");
+        // console.log([store, snapshot, url, relationship]);
+        // console.log("url:");
+        // console.log(url);
+        // // var url = this.urlPrefix(url, this.buildURL(type, id, null, 'findHasMany'));
+
         return new Ember.RSVP.Promise((resolve, reject) => {
             Ember.$.ajax(url, relationship.type, {
                 method: 'GET',
