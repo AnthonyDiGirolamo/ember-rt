@@ -60,6 +60,7 @@ export default ApplicationAdapter.extend({
 
         // console.log("findHasMany");
         // console.log([store, snapshot, url, relationship]);
+        // var parent_ticket = snapshot;
         // console.log("url:");
         // console.log(url);
         // // var url = this.urlPrefix(url, this.buildURL(type, id, null, 'findHasMany'));
@@ -69,7 +70,7 @@ export default ApplicationAdapter.extend({
                 method: 'GET',
                 dataType: 'html'
             }).then((data, textStatus, xhr) => {
-                Ember.run(null, resolve, parseHistory(data, this.namespace));
+                Ember.run(null, resolve, parseHistory(data, this.namespace, snapshot.id));
             }, (xhr, status, error) => {
                 console.log("fail:");
                 console.log(xhr.responseText);
