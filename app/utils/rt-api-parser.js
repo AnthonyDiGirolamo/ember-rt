@@ -71,16 +71,36 @@ function parseEmail(payload, namespace, message_id) {
 }
 
 function parseSearch(payload, namespace, search_id) {
-    console.log(payload);
+    // console.log(payload);
 
-    // let data = _.chain( payload.split('\n\n'))
-    //     .value();
+    // RT/4.2.12 200 Ok
 
-    // let data = {"tickets": [{"id": message_id, "body": payload}]};
+    // 117195: software request: TRAC
+    // 117827: swbuild error
+    // 119354: svn on frost
+    // 119546: Pnetcdf on Frost?
+    // 120800: chester / git
+    // 121640: gmake
+
+    let data = _.chain( payload.split('\n') )
+        .reject((line) => {
+            return !line.trim() || // blank line
+                (_.startsWith(line, "RT/") &&
+                 _.endsWith(line,   "200 Ok"));
+        })
+        .collect((line) => {
+            return _.map(line.split(':', 2), _.trim);
+        })
+        .collect((id_title_pair) => {
+            return {'id': id_title_pair[0],
+                    'subject': id_title_pair[1],
+                   };
+        })
+        .value();
+    // data = {"tickets": data};
+
     // console.log(data);
-
-    // return data;
-    return {};
+    return data;
 }
 
 export {

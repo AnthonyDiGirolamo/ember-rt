@@ -1,0 +1,76 @@
+<div id="main" class="pure-u-1">
+
+  <div class="email-content">
+    <div class="email-content-header pure-g">
+      <div class="pure-u-1-2">
+        <h1 class="email-content-title">{{model.subject}}</h1>
+        <p class="email-content-subtitle">
+          From <a>{{model.requestors}}</a> at <span>{{model.created}}</span>
+        </p>
+      </div>
+      <div class="email-content-controls pure-u-1-2">
+        <button class="secondary-button pure-button">Reply</button>
+        <button class="secondary-button pure-button">Forward</button>
+        <button class="secondary-button pure-button">Move to</button>
+      </div>
+    </div>
+
+    <div class="email-content-body">
+      <ul>
+        <li>Subject:         {{model.subject}}</li>
+        <li>requestors:      {{model.requestors}}</li>
+        <li>owner:           {{model.owner}}</li>
+        <li>adminCc:         {{model.adminCc}}</li>
+        <li>cc:              {{model.cc}}</li>
+        <li>cfUaDevCodebase: {{model.cfUaDevCodebase}}</li>
+        <li>created:         {{model.created}}</li>
+        <li>creator:         {{model.creator}}</li>
+        <li>due:             {{model.due}}</li>
+        <li>finalPriority:   {{model.finalPriority}}</li>
+        <li>initialPriority: {{model.initialPriority}}</li>
+        <li>lastUpdated:     {{model.lastUpdated}}</li>
+        <li>priority:        {{model.priority}}</li>
+        <li>queue:           {{model.queue}}</li>
+        <li>resolved:        {{model.resolved}}</li>
+        <li>started:         {{model.started}}</li>
+        <li>starts:          {{model.starts}}</li>
+        <li>status:          {{model.status}}</li>
+        <li>timeEstimated:   {{model.timeEstimated}}</li>
+        <li>timeLeft:        {{model.timeLeft}}</li>
+        <li>timeWorked:      {{model.timeWorked}}</li>
+        <li>told:            {{model.told}}</li>
+      </ul>
+    </div>
+  </div>
+
+
+{{#each model.messages as |message|}}
+  <div class="email-content">
+    <div class="email-content-header pure-g">
+      <div class="pure-u-1-2">
+        <h1 class="email-content-title">{{model.requestors}}</h1>
+        {{! <p class="email-content-subtitle"> }}
+        {{!   From <a>Tilo Mitra</a> at <span>3:56pm, April 3, 2012</span> }}
+        {{! </p> }}
+      </div>
+
+      <div class="email-content-controls pure-u-1-2">
+        <button class="secondary-button pure-button">Reply</button>
+        <button class="secondary-button pure-button">Forward</button>
+        <button class="secondary-button pure-button">Move to</button>
+      </div>
+    </div>
+
+    <div class="email-content-body">
+      {{#each message.emails as |email|}}
+      <pre>
+        {{email.body}}
+      </pre>
+      {{/each}}
+    </div>
+  </div>
+{{/each}}
+
+</div>
+
+{{outlet}}

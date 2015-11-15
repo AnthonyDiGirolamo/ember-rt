@@ -4,8 +4,8 @@ import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mi
 
 // export default Ember.Route.extend(AuthenticatedRouteMixin, {
 export default Ember.Route.extend(ApplicationRouteMixin, {
-    model: function() {
-        return this.store.findAll('search');
+    model: function(params) {
+        return this.store.find('ticket', params.ticket_id);
     },
     actions: {
     }
