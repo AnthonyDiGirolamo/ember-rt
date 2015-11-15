@@ -17,14 +17,16 @@ function parseTicket(payload, namespace) {
         .zipObject()
         .value();
     data.id = data.id.replace("ticket/", "");
-    data.links = { "messages": namespace + "/ticket/" + data.id + "/history" };
+    data.links = { "messages": namespace + "/ticket/" + data.id + "/history"};//  + '?format=l'};
     data = {"ticket": data};
-    console.log(data);
+    // console.log(data);
     return data;
 }
 
 function parseHistory(payload, namespace, ticket_id) {
-    // console.log(payload);
+    // let data = payload.split('\n--\n');
+    // console.log(data);
+    // return {};
 
     // RT/4.2.12 200 Ok
     //
@@ -52,7 +54,7 @@ function parseHistory(payload, namespace, ticket_id) {
         })
         .value();
     data = {"messages": data};
-    console.log(data);
+    // console.log(data);
     return data;
 }
 
@@ -63,13 +65,27 @@ function parseEmail(payload, namespace, message_id) {
     //     .value();
 
     let data = {"emails": [{"id": message_id, "body": payload}]};
-    console.log(data);
+    // console.log(data);
 
     return data;
+}
+
+function parseSearch(payload, namespace, search_id) {
+    console.log(payload);
+
+    // let data = _.chain( payload.split('\n\n'))
+    //     .value();
+
+    // let data = {"tickets": [{"id": message_id, "body": payload}]};
+    // console.log(data);
+
+    // return data;
+    return {};
 }
 
 export {
     parseTicket,
     parseHistory,
-    parseEmail
+    parseEmail,
+    parseSearch
 };

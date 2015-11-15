@@ -57,7 +57,7 @@ export default ApplicationAdapter.extend({
     },
 
     findHasMany: function(store, snapshot, url, relationship) {
-        console.log("ticket findHasMany");
+        // console.log("ticket findHasMany");
         // console.log([store, snapshot, url, relationship]);
         // var parent_ticket = snapshot;
         // console.log("url:");

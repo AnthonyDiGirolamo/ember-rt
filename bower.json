@@ -12,6 +12,7 @@
     "jquery": "^1.11.3",
     "loader.js": "ember-cli/loader.js#3.2.1",
     "qunit": "~1.20.0",
-    "pure": "purecss#~0.6.0"
-  }
+    "pure": "~0.6.0",
+    "ember-localstorage-adapter": "~0.5.5"
+  },
 }
