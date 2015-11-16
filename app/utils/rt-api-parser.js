@@ -1,11 +1,9 @@
 import _ from 'lodash/lodash';
 
-function parseTicket(payload, namespace) {
-    let data = _.chain(payload.split('\n'))
+function parseTicketMetadata(data) {
+    return _.chain(data.split('\n'))
         .reject((line) => {
-            return !line.trim() || // blank line
-                (_.startsWith(line, "RT/") &&
-                 _.endsWith(line,   "200 Ok"));
+            return !line.trim(); // blank line
         })
         .collect((line) => {
             return _.map(line.split(':', 2), _.trim);
@@ -16,6 +14,13 @@ function parseTicket(payload, namespace) {
         })
         .zipObject()
         .value();
+}
+
+function parseTicket(payload, namespace) {
+    payload = payload.replace(/RT.*200 Ok\n\n/, '');
+
+    let data = parseTicketMetadata(payload);
+
     data.id = data.id.replace("ticket/", "");
     data.links = { "messages": namespace + "/ticket/" + data.id + "/history"};//  + '?format=l'};
     data = {"ticket": data};
@@ -75,17 +80,8 @@ function parseSearch(payload, namespace, search_id) {
     // console.log(payload);
 
     let data = _.collect(payload.split('\n\n--\n\n'), (ticket) => {
-        return _.chain( ticket.split('\n') )
-            .collect((line) => {
-                return _.map(line.split(':', 2), _.trim);
-            })
-            .collect((pair) => {
-                pair[0] = _.camelCase(pair[0]);
-                return pair;
-            })
-            .zipObject()
-            .value()
-        });
+        return parseTicketMetadata(ticket);
+    });
 
     _.each(data, (ticket) => {
         ticket.id = ticket.id.replace("ticket/", "");

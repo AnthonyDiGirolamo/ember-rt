@@ -23,7 +23,7 @@ module.exports = function(environment) {
     // store: 'ember-simple-auth-session-store:local-storage',
     // authorizer: 'authorizer:rt',
     // crossOriginWhitelist: ['https://rt*'],
-    routeAfterAuthentication: '/'
+    routeAfterAuthentication: '/search'
   };
 
   if (environment === 'development') {

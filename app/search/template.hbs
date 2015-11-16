@@ -4,12 +4,12 @@
 
     <div class="nav-inner">
       {{#if session.isAuthenticated}}
-        <a {{action 'invalidateSession'}}>Logout</a>
+        <button class="primary-button pure-button" {{action 'invalidateSession'}}>Logout</button>
       {{else}}
-        {{#link-to 'login'}}Login{{/link-to}}
+        {{#link-to 'login' class="primary-button pure-button"}}Login{{/link-to}}
       {{/if}}
 
-      {{jump-to-ticket}}
+      {{! jump-to-ticket}}
 
       <button class="primary-button pure-button">Compose</button>
 
