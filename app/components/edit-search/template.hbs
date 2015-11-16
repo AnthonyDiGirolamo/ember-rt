@@ -1,0 +1,28 @@
+<form class="pure-form pure-form-stacked">
+  <fieldset>
+    <div class="pure-control-group">
+      <label for="name">Name</label>
+      {{input value=search.name id="name" class="pure-input-1-4"}}
+    </div>
+
+    <div class="pure-control-group">
+      <label for="query">Query</label>
+      {{input value=search.rtquery id="query" class="pure-input-2-3"}}
+    </div>
+
+    <div class="pure-control-group">
+      <label for="orderby">Order By</label>
+      {{input value=search.rtorderby id="orderby" class="pure-input-2-3"}}
+    </div>
+
+    <div class="pure-controls">
+      {{! <label for="cb" class="pure-checkbox"> }}
+      {{!   <input id="cb" type="checkbox"> I've read the terms and conditions }}
+      {{! </label> }}
+
+      <button class="pure-button pure-button-primary" {{action "saveSearch"}}>Save</button>
+    </div>
+  </fieldset>
+</form>
+
+{{yield}}

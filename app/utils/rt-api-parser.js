@@ -71,35 +71,27 @@ function parseEmail(payload, namespace, message_id) {
 }
 
 function parseSearch(payload, namespace, search_id) {
+    payload = payload.replace(/RT.*200 Ok\n\n/, '');
     // console.log(payload);
 
-    // RT/4.2.12 200 Ok
+    let data = _.collect(payload.split('\n\n--\n\n'), (ticket) => {
+        return _.chain( ticket.split('\n') )
+            .collect((line) => {
+                return _.map(line.split(':', 2), _.trim);
+            })
+            .collect((pair) => {
+                pair[0] = _.camelCase(pair[0]);
+                return pair;
+            })
+            .zipObject()
+            .value()
+        });
 
-    // 117195: software request: TRAC
-    // 117827: swbuild error
-    // 119354: svn on frost
-    // 119546: Pnetcdf on Frost?
-    // 120800: chester / git
-    // 121640: gmake
+    _.each(data, (ticket) => {
+        ticket.id = ticket.id.replace("ticket/", "");
+    });
+    console.log(data);
 
-    let data = _.chain( payload.split('\n') )
-        .reject((line) => {
-            return !line.trim() || // blank line
-                (_.startsWith(line, "RT/") &&
-                 _.endsWith(line,   "200 Ok"));
-        })
-        .collect((line) => {
-            return _.map(line.split(':', 2), _.trim);
-        })
-        .collect((id_title_pair) => {
-            return {'id': id_title_pair[0],
-                    'subject': id_title_pair[1],
-                   };
-        })
-        .value();
-    // data = {"tickets": data};
-
-    // console.log(data);
     return data;
 }
 

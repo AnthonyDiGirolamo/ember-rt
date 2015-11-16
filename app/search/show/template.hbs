@@ -11,9 +11,10 @@
     {{! </div> }}
 
     <div class="pure-u-3-4">
-      <h5 class="email-name">{{ticket.id}}</h5>
+      <h5 class="email-name">{{ticket.requestors}}</h5>
       <h4 class="email-subject">{{ticket.subject}}</h4>
       <p class="email-desc">
+        {{ticket.queue}}, {{ticket.status}}, {{ticket.lastUpdated}}
       </p>
     </div>
   </div>

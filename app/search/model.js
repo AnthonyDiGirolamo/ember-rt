@@ -5,12 +5,15 @@ import { parseSearch } from '../utils/rt-api-parser';
 export default DS.Model.extend({
     name:      DS.attr('string'),
     rtquery:   DS.attr('string'),
-    rtformat:  DS.attr('string'),
     rtorderby: DS.attr('string'),
 
     rtQueryString: function() {
-        return `/REST/1.0/search/ticket?query=${this.get('rtquery')}`;
-    }.property('rtquery'),
+        let q = `/REST/1.0/search/ticket?query=${this.get('rtquery')}&format=l`
+        if ( this.get('rtorderby') ) {
+            q += `&orderby=${this.get('rtorderby')}`;
+        }
+        return q;
+    }.property('rtquery', 'rtorderby'),
 
     tickets: function() {
         console.log("tickets search model");

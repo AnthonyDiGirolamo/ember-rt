@@ -21,6 +21,7 @@ module.exports = function(defaults) {
   // along with the exports of each module as its value.
 
   app.import('bower_components/ember-localstorage-adapter/localstorage_adapter.js');
+  // app.import('bower_components/bootstrap/js/modal.js');
 
   return app.toTree();
 };
