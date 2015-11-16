@@ -1,6 +1,6 @@
 # Ember RT
 
-    brew install node
+    brew install homebrew/versions/node012
     npm cache clean
     npm install -g ember-cli
 
@@ -12,7 +12,7 @@
     npm install
     bower install
 
-    ember server
+    ember server --proxy=https://your-rt-server  --host 127.0.0.1
 
 This README outlines the details of collaborating on this Ember application.
 A short introduction of this app could easily go here.
