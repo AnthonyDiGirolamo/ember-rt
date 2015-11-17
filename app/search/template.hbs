@@ -1,40 +1,42 @@
-<div id="layout" class="content pure-g">
-  <div id="nav" class="pure-u">
+<div id="layout" class="">
+  <div id="nav" class="">
     <a href="#" class="nav-menu-button">Menu</a>
 
     <div class="nav-inner">
       {{#if session.isAuthenticated}}
-        <button class="primary-button pure-button" {{action 'invalidateSession'}}>Logout</button>
+        <button class="btn btn-primary" {{action 'invalidateSession'}}>Logout</button>
       {{else}}
-        {{#link-to 'login' class="primary-button pure-button"}}Login{{/link-to}}
+        {{#link-to 'login' class="btn btn-primary"}}Login{{/link-to}}
       {{/if}}
 
       {{! jump-to-ticket}}
 
-      <button class="primary-button pure-button">Compose</button>
-
-      <div class="pure-menu">
-        <ul class="pure-menu-list">
+      <div role="navigation">
+        <button class="btn btn-primary">Compose</button>
+        <ul class="nav nav-pills nav-stacked">
           <li class="pure-menu-heading">Searches</li>
+          <li role="separator" class="divider"></li>
 
           {{#each model as |search|}}
-          <li class="pure-menu-item">
-            {{#link-to 'search.show' search.id class="pure-menu-link"}}
-            <span class="email-label-work"></span>
-            {{search.name}}
+            {{#link-to 'search.show' search.id tagName='li' href=false}}
+            {{#link-to 'search.show' search.id class=""}}
+              {{search.name}}
+            {{/link-to}}
             {{/link-to}}
 
-            {{#link-to 'search.edit' search.id class="pure-menu-link"}}
-            Edit
+            {{#link-to 'search.edit' search.id tagName='li' href=false}}
+            {{#link-to 'search.edit' search.id class=""}}
+              Edit
             {{/link-to}}
-          </li>
+            {{/link-to}}
           {{/each}}
 
-          <li class="pure-menu-item">
-            {{#link-to 'search.new' class="pure-menu-link"}}
+          {{#link-to 'search.new' tagName='li' href=false}}
+          {{#link-to 'search.new' class=""}}
             New Search
-            {{/link-to}}
-          </li>
+          {{/link-to}}
+          {{/link-to}}
+
           {{! <li class="pure-menu-item"><a href="#" class="pure-menu-link">Inbox <span class="email-count">(2)</span></a></li> }}
           {{! <li class="pure-menu-item"><a href="#" class="pure-menu-link">Important</a></li> }}
           {{! <li class="pure-menu-item"><a href="#" class="pure-menu-link">Sent</a></li> }}
@@ -45,6 +47,7 @@
           {{! <li class="pure-menu-item"><a href="#" class="pure-menu-link"><span class="email-label-travel"></span>Travel</a></li> }}
         </ul>
       </div>
+
     </div>
   </div>
 

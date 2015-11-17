@@ -21,7 +21,17 @@ module.exports = function(defaults) {
   // along with the exports of each module as its value.
 
   app.import('bower_components/ember-localstorage-adapter/localstorage_adapter.js');
-  // app.import('bower_components/bootstrap/js/modal.js');
+  app.import('bower_components/bootstrap/dist/js/bootstrap.js');
+
+  app.import('vendor/bootstrap.lumen.min.css');
+  // app.import('bower_components/bootstrap/dist/css/bootstrap.css');
+  // app.import('bower_components/bootstrap/dist/css/bootstrap.css.map');
+
+  app.import('vendor/font-awesome-4.4.0/css/font-awesome.css');
+  app.import('vendor/font-awesome-4.4.0/fonts/fontawesome-webfont.ttf', {destDir: 'font'});
+  app.import('vendor/font-awesome-4.4.0/fonts/fontawesome-webfont.eot', {destDir: 'font'});
+  app.import('vendor/font-awesome-4.4.0/fonts/fontawesome-webfont.svg', {destDir: 'font'});
+  app.import('vendor/font-awesome-4.4.0/fonts/fontawesome-webfont.woff', {destDir: 'font'});
 
   return app.toTree();
 };
