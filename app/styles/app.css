@@ -216,7 +216,7 @@
         overflow: auto;
     }
     #nav {
-    border-right: 1px solid #ddd;
+        border-right: 1px solid #ddd;
         margin-left:-500px; /* "left col (nav + list)" width */
         width:150px;
         height: 100%;
@@ -225,7 +225,7 @@
     /* Show the menu items on the larger screen */
     .nav-inner {
         display: block;
-        padding: 2em 0;
+        /* padding: 2em 0; */
     }
 
     /* Hide the "Menu" button on larger screens */
