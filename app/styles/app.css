@@ -1,42 +1,8 @@
-/* /\* */
-/*  * -- BASE STYLES -- */
-/*  * Most of these are inherited from Base, but I want to change a few. */
-/*  *\/ */
-/* body { */
-/*     color: #333; */
-/* } */
 
+.nav-inner .row {
+    margin-bottom: 5px;
+}
 
-
-/* a { */
-/*     text-decoration: none; */
-/*     color: #1b98f8; */
-/* } */
-
-
-/* /* */
-/*  * -- HELPER STYLES -- */
-/*  * Over-riding some of the .pure-button styles to make my buttons look unique */
-/*  *1/ */
-/* .primary-button, */
-/* .secondary-button { */
-/*     -webkit-box-shadow: none; */
-/*     -moz-box-shadow: none; */
-/*     box-shadow: none; */
-/*     border-radius: 20px; */
-/* } */
-/* .primary-button { */
-/*     color: #fff; */
-/*     background: #1b98f8; */
-/*     margin: 1em 0; */
-/* } */
-/* .secondary-button { */
-/*     background: #fff; */
-/*     border: 1px solid #ddd; */
-/*     color: #666; */
-/*     padding: 0.5em 2em; */
-/*     font-size: 80%; */
-/* } */
 
 /*
  * -- LAYOUT STYLES --

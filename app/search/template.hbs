@@ -15,7 +15,6 @@
 
             {{! jump-to-ticket}}
 
-
             <div class="row">
                 <div class="col-sm-12">
                     <button class="btn btn-block btn-primary">Compose</button>
@@ -23,10 +22,8 @@
             </div>
 
             {{#each model as |search|}}
-
                 <div class="row">
                     <div class="col-sm-12">
-
                         <div class="btn-group btn-block" >
                             {{#link-to 'search.show' search.id class="col-sm-9 btn btn-default"}}
                                 {{search.name}}
@@ -39,21 +36,13 @@
                 </div>
             {{/each}}
 
-            {{#link-to 'search.new' class=""}}
-                New Search
-            {{/link-to}}
-
-            {{! <li class="pure-menu-item"><a href="#" class="pure-menu-link">Inbox <span class="email-count">(2)</span></a></li> }}
-            {{! <li class="pure-menu-item"><a href="#" class="pure-menu-link">Important</a></li> }}
-            {{! <li class="pure-menu-item"><a href="#" class="pure-menu-link">Sent</a></li> }}
-            {{! <li class="pure-menu-item"><a href="#" class="pure-menu-link">Drafts</a></li> }}
-            {{! <li class="pure-menu-item"><a href="#" class="pure-menu-link">Trash</a></li> }}
-            {{! <li class="pure-menu-heading">Labels</li> }}
-            {{! <li class="pure-menu-item"><a href="#" class="pure-menu-link"><span class="email-label-work"></span>Work</a></li> }}
-            {{! <li class="pure-menu-item"><a href="#" class="pure-menu-link"><span class="email-label-travel"></span>Travel</a></li> }}
-
-
-
+            <div class="row">
+                <div class="col-sm-12">
+                    {{#link-to 'search.new' class="btn btn-block btn-primary"}}
+                        New Search
+                    {{/link-to}}
+                </div>
+            </div>
         </div>
     </div>
 
