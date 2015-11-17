@@ -19,6 +19,17 @@ module.exports = function(environment) {
     }
   };
 
+  ENV.contentSecurityPolicy = {
+    'default-src': "'none'",
+    'script-src': "'self'", // Allow scripts from https://cdn.mxpnl.com
+    'font-src': "'self'", // Allow fonts to be loaded from http://fonts.gstatic.com
+    'connect-src': "'self'", // Allow data (ajax/websocket) from api.mixpanel.com and custom-api.local
+    'img-src': "'self'",
+    'style-src': "'self'", // Allow inline styles 'unsafe-inline' and loaded CSS from http://fonts.googleapis.com
+    'media-src': "'self'"
+  }
+
+
   ENV['ember-simple-auth'] = {
     // store: 'ember-simple-auth-session-store:local-storage',
     // authorizer: 'authorizer:rt',
