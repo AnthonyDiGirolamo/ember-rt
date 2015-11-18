@@ -21,20 +21,23 @@
                 </div>
             </div>
 
-            {{#each model as |search|}}
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="btn-group btn-block" >
-                            {{#link-to 'search.show' search.id class="col-sm-9 btn btn-default"}}
+            <div class="row">
+                <ul class="list-group">
+                    {{#each model as |search|}}
+                        <li class="list-group-item">
+                            <span class="badge">
+                                {{#link-to 'search.edit' search.id class=""}}
+                                    <i class="fa fa-pencil"></i>
+                                {{/link-to}}
+                            </span>
+                            {{#link-to 'search.show' search.id class=""}}
                                 {{search.name}}
                             {{/link-to}}
-                            {{#link-to 'search.edit' search.id class="col-sm-3 btn btn-default"}}
-                                <i class="fa fa-pencil"></i>
-                            {{/link-to}}
-                        </div>
-                    </div>
-                </div>
-            {{/each}}
+                        </li>
+
+                    {{/each}}
+                </ul>
+            </div>
 
             <div class="row">
                 <div class="col-sm-12">
