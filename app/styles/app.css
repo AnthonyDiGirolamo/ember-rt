@@ -1,11 +1,29 @@
 
+body {
+    background-color: #EEEEEE;
+}
+
 .nav-inner .row {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     margin-left: 5px;
     margin-right: 5px;
 }
 .nav-inner span.badge a {
     color: #FFF;
+}
+
+.nav-inner .panel {
+    margin-bottom: 0;
+}
+.nav-inner .panel-body {
+    padding: 5px;
+}
+.nav-inner .list-group {
+    margin-bottom: 0;
+}
+.nav-inner .panel-body .list-group-item {
+    padding: 5px;
+    border: 0px solid #dddddd;
 }
 
 
