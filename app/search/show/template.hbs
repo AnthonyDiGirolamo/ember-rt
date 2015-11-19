@@ -1,22 +1,19 @@
 {{! search-results search=model}}
-<div id="list" class="pure-u-1">
+<div id="list" class="">
 
   {{#each model.tickets as |ticket|}}
-  {{! <div class="email-item email-item-selected pure-g"> }}
   {{#link-to 'search.show.ticket' ticket.id}}
-  <div class="email-item pure-g">
+  {{! <div class="email-item email-item-selected pure-g"> }}
+  <div class="email-item">
 
-    {{! <div class="pure-u"> }}
-    {{!   <img class="email-avatar" alt="Tilo Mitra&#x27;s avatar" height="64" width="64" src="img/common/tilo-avatar.png"> }}
-    {{! </div> }}
+      {{email-avatar avatarType='color' emailAddress=ticket.requestors}}
 
-    <div class="pure-u-3-4">
       <h5 class="email-name">{{ticket.requestors}}</h5>
       <h4 class="email-subject">{{ticket.subject}}</h4>
       <p class="email-desc">
         {{ticket.queue}}, {{ticket.status}}, {{ticket.lastUpdated}}
       </p>
-    </div>
+
   </div>
   {{/link-to}}
   {{/each}}

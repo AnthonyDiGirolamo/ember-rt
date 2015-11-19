@@ -86,7 +86,7 @@ function parseSearch(payload, namespace, search_id) {
     _.each(data, (ticket) => {
         ticket.id = ticket.id.replace("ticket/", "");
     });
-    console.log(data);
+    // console.log(data);
 
     return data;
 }
