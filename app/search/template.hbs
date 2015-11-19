@@ -33,15 +33,16 @@
                     {{#each model as |search|}}
                         <li class="list-group-item">
                             <span class="badge">
-                                {{#link-to 'search.edit' search.id class=""}}
+                                {{#link-to "search.edit" search.id class=""}}
                                     <i class="fa fa-pencil"></i>
                                 {{/link-to}}
                             </span>
-                            {{#link-to 'search.show' search.id class=""}}
+                            {{#link-to "search.show" search.id tagName="div" class="search-item" href=false}}
+                            {{#link-to "search.show" search.id class=""}}
                                 {{search.name}}
                             {{/link-to}}
+                            {{/link-to}}
                         </li>
-
                     {{/each}}
                 </ul>
                 </div>

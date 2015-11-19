@@ -21,6 +21,10 @@ body {
 .nav-inner .list-group {
     margin-bottom: 0;
 }
+.nav-inner .list-group .search-item .active {
+    background-color: #2196f3;
+    color: #FFF;
+}
 .nav-inner .panel-body .list-group-item {
     padding: 5px;
     border: 0px solid #dddddd;
@@ -47,6 +51,7 @@ body {
     font-size: 42px;
     font-weight: bold;
     margin-top: -18px;
+    color: #FFF;
 }
 
 .avatar-rounded {
