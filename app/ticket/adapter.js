@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import ApplicationAdapter from '../adapters/application';
-import { parseTicket, parseHistory } from '../utils/rt-api-parser';
+import { parseTicket, parseHistory, parseAttachment } from '../utils/rt-api-parser';
 
 export default ApplicationAdapter.extend({
     buildURL: function(root, suffix, record) {
@@ -34,7 +34,6 @@ export default ApplicationAdapter.extend({
                 dataType: 'html'
             }).then((data, textStatus, xhr) => {
                 // console.log(xhr);
-                // console.log("success:"); console.log(data);
                 Ember.run(null, resolve, parseTicket(data, this.namespace));
                 // Ember.run(() => {
                 //     resolve(parseTicket(data, this.namespace));
@@ -69,7 +68,16 @@ export default ApplicationAdapter.extend({
                 method: 'GET',
                 dataType: 'html'
             }).then((data, textStatus, xhr) => {
-                Ember.run(null, resolve, parseHistory(data, this.namespace, snapshot.id));
+                console.log(`ticket adapter fetch: ${relationship.type}`);
+                // console.log(data);
+                let json_data = {};
+                if (relationship.type === 'message') {
+                    json_data = parseHistory(data, this.namespace, snapshot.id);
+                }
+                else if (relationship.type === 'attachment') {
+                    json_data = parseAttachment(data, this.namespace, snapshot.id);
+                }
+                Ember.run(null, resolve, json_data);
             }, (xhr, status, error) => {
                 console.log("fail:");
                 console.log(xhr.responseText);

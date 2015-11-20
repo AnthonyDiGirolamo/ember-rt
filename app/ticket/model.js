@@ -25,5 +25,6 @@ export default DS.Model.extend({
     told:            DS.attr('string'),
 
     user:     DS.belongsTo('user', {async: true}),
-    messages: DS.hasMany('messages', {async: true})
+    messages: DS.hasMany('messages', {async: true}),
+    attachments: DS.hasMany('attachments', {async: true})
 });

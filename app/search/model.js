@@ -16,7 +16,7 @@ export default DS.Model.extend({
     }.property('rtquery', 'rtorderby'),
 
     tickets: function() {
-        console.log("tickets search model");
+        // console.log("tickets search model");
 
         return new Ember.RSVP.Promise((resolve, reject) => {
             Ember.$.ajax(this.get('rtQueryString'), 'ticket', {

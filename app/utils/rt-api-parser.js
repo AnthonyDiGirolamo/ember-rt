@@ -1,4 +1,5 @@
 import _ from 'lodash/lodash';
+import MimeParser from 'npm:mimeparser';
 
 function parseTicketMetadata(data) {
     return _.chain(data.split('\n'))
@@ -22,7 +23,10 @@ function parseTicket(payload, namespace) {
     let data = parseTicketMetadata(payload);
 
     data.id = data.id.replace("ticket/", "");
-    data.links = { "messages": namespace + "/ticket/" + data.id + "/history"};//  + '?format=l'};
+    data.links = {
+        "messages": `${namespace}/ticket/${data.id}/history`, // ?format=l
+        "attachments": `${namespace}/ticket/${data.id}/attachments`
+    };
     data = {"ticket": data};
     // console.log(data);
     return data;
@@ -46,7 +50,7 @@ function parseHistory(payload, namespace, ticket_id) {
 
     let data = _.chain( _.last(payload.split('(/total)\n\n')).split('\n') )
         .reject((line) => {
-            return !line.trim() // blank line
+            return !line.trim(); // blank line
         })
         .collect((line) => {
             return _.map(line.split(':', 2), _.trim);
@@ -54,7 +58,7 @@ function parseHistory(payload, namespace, ticket_id) {
         .collect((id_title_pair) => {
             return {'id': id_title_pair[0],
                     'title': id_title_pair[1],
-                    'links': {'emails': namespace + "/ticket/" + ticket_id + "/history/id/" + id_title_pair[0]}
+                    'links': {'emails': `${namespace}/ticket/${ticket_id}/history/id/${id_title_pair[0]}`}
                    };
         })
         .value();
@@ -63,16 +67,49 @@ function parseHistory(payload, namespace, ticket_id) {
     return data;
 }
 
-function parseEmail(payload, namespace, message_id) {
-    // console.log(payload);
-
+function parseEmail(payload, namespace, message_id, ticket_id) {
     // let data = _.chain( payload.split('\n\n'))
     //     .value();
 
-    let data = {"emails": [{"id": message_id, "body": payload}]};
-    // console.log(data);
+    let data = {"emails": [
+        { "id": message_id,
+          "body": payload,
+        }]};
+    // data.links = { "attachments": `${namespace}/ticket/${data.id}/attachments/${attachment_id}` };
+
+    // parser.write(payload);
+    // parser.end();
 
     return data;
+}
+
+function parseAttachment(payload, namespace, ticket_id) {
+    console.log(payload);
+
+/*
+RT/4.2.12 200 Ok
+
+id: ticket/276082/attachments
+
+Attachments: 1859983: (Unnamed) (text/plain / 475b),
+             1869271: (Unnamed) (text/plain / 342b)
+
+RT/4.2.12 200 Ok
+
+id: ticket/276058/attachments
+Attachments: 1859797: (Unnamed) (text/plain / 802b)
+
+*/
+    // let parser = new MimeParser();
+    // parser.onheader = function(node){
+    //     console.log(node.header.join('\n')); // List all headers
+    //     console.log(node.headers['content-type']); // List value for Content-Type
+    // };
+    // parser.onbody = function(node, chunk){
+    //     console.log('Received %s bytes for %s', chunk.byteLength, node.path.join("."));
+    // };
+
+    return {};
 }
 
 function parseSearch(payload, namespace, search_id) {
@@ -95,5 +132,6 @@ export {
     parseTicket,
     parseHistory,
     parseEmail,
+    parseAttachment,
     parseSearch
 };
