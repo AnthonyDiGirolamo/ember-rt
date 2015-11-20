@@ -19,7 +19,7 @@ export default Ember.Component.extend({
 
     avatarColorBlockStyle: function() {
         if (this.get('avatarType') === 'color') {
-            return `color:#FFF;background-color:${colorAvatar(this.get('emailAddress'))}`;
+            return new Ember.Handlebars.SafeString(`background-color:${colorAvatar(this.get('emailAddress'))}`);
         }
         else {
             return "";
