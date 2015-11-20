@@ -7,7 +7,8 @@ function parseTicketMetadata(data) {
             return !line.trim(); // blank line
         })
         .collect((line) => {
-            return _.map(line.split(':', 2), _.trim);
+            let first_colon_index = line.indexOf(': ');
+            return _.map([line.slice(0, first_colon_index), line.slice(first_colon_index+2)], _.trim);
         })
         .collect((pair) => {
             pair[0] = _.camelCase(pair[0]);
@@ -33,9 +34,8 @@ function parseTicket(payload, namespace) {
 }
 
 function parseHistory(payload, namespace, ticket_id) {
+    // console.log(payload);
     // let data = payload.split('\n--\n');
-    // console.log(data);
-    // return {};
 
     // RT/4.2.12 200 Ok
     //
@@ -53,7 +53,8 @@ function parseHistory(payload, namespace, ticket_id) {
             return !line.trim(); // blank line
         })
         .collect((line) => {
-            return _.map(line.split(':', 2), _.trim);
+            let first_colon_index = line.indexOf(': ');
+            return _.map([line.slice(0, first_colon_index), line.slice(first_colon_index+2)], _.trim);
         })
         .collect((id_title_pair) => {
             return {'id': id_title_pair[0],
