@@ -11,6 +11,10 @@ export default Ember.Component.extend({
             this.get('session').authenticate('authenticator:rt', credentials).catch((message) => {
                 this.set('errorMessage', message);
             });
+            this.sendAction('removeModal');
+        },
+        removeModal: function() {
+            this.sendAction('removeModal');
         }
     }
 });

@@ -5,8 +5,8 @@ export default Base.extend({
     tokenEndpoint: '/REST/1.0/',
 
     restore: function(data) {
-        console.log("restore...");
-        console.log(data);
+        // console.log("restore...");
+        // console.log(data);
         return new Ember.RSVP.Promise((resolve, reject) => {
             if (!Ember.isEmpty(data.token)) {
                 resolve(data);
