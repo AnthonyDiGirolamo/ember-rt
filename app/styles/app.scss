@@ -142,9 +142,7 @@ body {
     color: rgb(75, 113, 151);
 }
 
-.email-label-personal,
-.email-label-work,
-.email-label-travel {
+.email-label-personal, .email-label-work, .email-label-travel {
     width: 15px;
     height: 15px;
     display: inline-block;
@@ -168,22 +166,22 @@ body {
     border-bottom: 1px solid #ddd;
     border-left: 6px solid transparent;
 }
-    .email-avatar {
-        border-radius: 3px;
-        margin-right: 0.5em;
-    }
-    .email-name,
-    .email-subject {
-        margin: 0;
-    }
-    .email-name {
-        text-transform: uppercase;
-        color: #999;
-    }
-    .email-desc {
-        font-size: 80%;
-        margin: 0.4em 0;
-    }
+.email-avatar {
+    border-radius: 3px;
+    margin-right: 0.5em;
+}
+.email-name,
+.email-subject {
+    margin: 0;
+}
+.email-name {
+    text-transform: uppercase;
+    color: #999;
+}
+.email-desc {
+    font-size: 80%;
+    margin: 0.4em 0;
+}
 
 .email-item-selected {
     background: #eee;
@@ -193,38 +191,41 @@ body {
 }
 
 /* Email Content Styles */
-.email-content-header, .email-content-body, .email-content-footer {
-    padding: 1em 2em;
+.email-content-header {
+    border-bottom: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    .email-content-body, .email-content-footer {
+        padding: 1em 2em;
+    }
 }
-    .email-content-header {
-        border-bottom: 1px solid #ddd;
-        border-top: 1px solid #ddd;
-    }
 
-        .email-content-title {
-            margin: 0.5em 0 0;
-        }
-        .email-content-subtitle {
-            font-size: 1em;
-            margin: 0;
-            font-weight: normal;
-        }
-            .email-content-subtitle span {
-                color: #999;
-            }
-    .email-content-controls {
-        margin-top: 2em;
-        text-align: right;
+.email-content-title {
+    margin: 0.5em 0 0;
+}
+.email-content-subtitle {
+    font-size: 1em;
+    margin: 0;
+    font-weight: normal;
+    span {
+        color: #999;
     }
-        .email-content-controls .secondary-button {
-            margin-bottom: 0.3em;
-        }
-
-    .email-avatar {
-        width: 40px;
-        height: 40px;
+}
+.email-content-controls {
+    margin-top: 2em;
+    text-align: right;
+    .secondary-button {
+        margin-bottom: 0.3em;
     }
+}
 
+.email-avatar {
+    width: 40px;
+    height: 40px;
+}
+
+
+$nav-bar-width: 200px;
+$message-list-width: 400px;
 
 /*
  * -- TABLET (AND UP) MEDIA QUERIES --
@@ -235,7 +236,7 @@ body {
 
     /* Move the layout over so we can fit the nav + list in on the left */
     #layout {
-        padding-left:500px; /* "left col (nav + list)" width */
+        padding-left: $nav-bar-width + $message-list-width; /* "left col (nav + list)" width */
         position: relative;
     }
 
@@ -248,8 +249,8 @@ body {
     }
     #nav {
         /* border-right: 1px solid #ddd; */
-        margin-left:-500px; /* "left col (nav + list)" width */
-        width:150px;
+        margin-left:-($nav-bar-width + $message-list-width); /* "left col (nav + list)" width */
+        width:$nav-bar-width;
         height: 100%;
     }
 
@@ -265,7 +266,7 @@ body {
     }
 
     #list {
-        margin-left: -350px;
+        margin-left: -$message-list-width;
         width: 100%;
         height: 33%;
         border-bottom: 1px solid #ddd;
@@ -276,7 +277,7 @@ body {
         top: 33%;
         right: 0;
         bottom: 0;
-        left: 150px;
+        left: $nav-bar-width;
         overflow: auto;
         width: auto; /* so that it's not 100% */
     }
@@ -289,11 +290,10 @@ body {
  * of the mobile styles.
  */
 @media (min-width: 60em) {
-
     /* This will take up the entire height, and be a little thinner */
     #list {
-        margin-left: -350px;
-        width:350px;
+        margin-left: -$message-list-width;
+        width: $message-list-width;
         height: 100%;
         border-right: 1px solid #ddd;
     }
