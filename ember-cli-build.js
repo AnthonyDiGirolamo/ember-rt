@@ -22,6 +22,13 @@ module.exports = function(defaults) {
 
   app.import('bower_components/ember-localstorage-adapter/localstorage_adapter.js');
   app.import('bower_components/bootstrap/dist/js/bootstrap.js');
+
+  app.import('bower_components/ace-builds/src-noconflict/ace.js');
+  app.import('bower_components/ace-builds/src-noconflict/theme-github.js');
+  app.import('bower_components/ace-builds/src-noconflict/mode-markdown.js');
+  app.import('bower_components/ace-builds/src-noconflict/mode-sh.js');
+  app.import('bower_components/ace-builds/src-noconflict/mode-c_cpp.js');
+
   // app.import('bower_components/bootstrap/dist/css/bootstrap.css');
   // app.import('bower_components/bootstrap/dist/css/bootstrap.css.map');
 
