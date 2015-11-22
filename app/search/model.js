@@ -4,10 +4,16 @@ import _ from 'lodash/lodash';
 import { parseSearch } from '../utils/rt-api-parser';
 
 export default DS.Model.extend({
-    name:      DS.attr('string'),
-    rtquery:   DS.attr('string'),
-    rtorderby: DS.attr('string'),
-    lastUpdated: DS.attr('string'),
+    name: DS.attr('string'),
+    rtquery: DS.attr('string', {
+        defaultValue: function() { return ""; }
+    }),
+    rtorderby: DS.attr('string', {
+        defaultValue: function() { return ""; }
+    }),
+    lastUpdated: DS.attr('string', {
+        defaultValue: function() { return Math.floor(new Date() / 1000); }
+    }),
 
     rtQueryString: function() {
         let rawq =  _.collect((this.get('rtquery') || "").split('\n'), (line) => {

@@ -16,6 +16,7 @@
             <label for="orderby">Order By</label>
             {{input value=searchRecord.rtorderby id="orderby" class="form-control"}}
         </div>
+        <button type="submit" class="btn btn-primary hidden">Save</button>
 
     </form>
     {{#if errorMessage}}
@@ -23,6 +24,8 @@
             {{errorMessage}}
         </div>
     {{/if}}
+
+    <button type="button" class="btn btn-danger"{{action "deleteSearch"}}>Delete</button>
 
     {{yield}}
 {{/my-modal}}

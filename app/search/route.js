@@ -8,5 +8,10 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
         return this.store.findAll('search');
     },
     actions: {
+        createNewSearch: function() {
+            this.store.createRecord('search', {
+                name: 'New Search'
+            });
+        }
     }
 });
