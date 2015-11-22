@@ -31,10 +31,11 @@ module.exports = function(defaults) {
   // app.import('bower_components/bootstrap/dist/css/bootstrap.css.map');
 
   app.import('vendor/font-awesome-4.4.0/css/font-awesome.css');
-  app.import('vendor/font-awesome-4.4.0/fonts/fontawesome-webfont.ttf', {destDir: 'font'});
-  app.import('vendor/font-awesome-4.4.0/fonts/fontawesome-webfont.eot', {destDir: 'font'});
-  app.import('vendor/font-awesome-4.4.0/fonts/fontawesome-webfont.svg', {destDir: 'font'});
-  app.import('vendor/font-awesome-4.4.0/fonts/fontawesome-webfont.woff', {destDir: 'font'});
+  app.import('vendor/font-awesome-4.4.0/fonts/fontawesome-webfont.ttf', {destDir: 'fonts'});
+  app.import('vendor/font-awesome-4.4.0/fonts/fontawesome-webfont.eot', {destDir: 'fonts'});
+  app.import('vendor/font-awesome-4.4.0/fonts/fontawesome-webfont.svg', {destDir: 'fonts'});
+  app.import('vendor/font-awesome-4.4.0/fonts/fontawesome-webfont.woff', {destDir: 'fonts'});
+  app.import('vendor/font-awesome-4.4.0/fonts/fontawesome-webfont.woff2', {destDir: 'fonts'});
 
   return app.toTree();
 };
