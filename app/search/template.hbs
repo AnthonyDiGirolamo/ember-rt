@@ -3,56 +3,64 @@
         <button class="nav-menu-button">Menu</button>
 
         <div class="nav-inner">
-            <div class="row">
-                <div class="col-sm-12">
-                    {{#if session.isAuthenticated}}
-                        <button class="btn btn-block btn-primary" {{action 'invalidateSession'}}>Logout</button>
-                    {{else}}
-                        <button class="btn btn-block btn-primary" {{action "showModal" "login"}}>Login</button>
-                    {{/if}}
+
+            <div class="nav-color">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="nav-center-link">
+                            {{#link-to 'search' class="logo"}}
+                                <i class="fa fa-ticket"></i> Ember-RT
+                            {{/link-to}}
+                        </div>
+                        <div class="nav-center-link">
+                            {{#if session.isAuthenticated}}
+                                <button class="btn btn-block btn-primary" {{action 'invalidateSession'}}>Logout</button>
+                            {{else}}
+                                <a class="" {{action "showModal" "login"}}>
+                                    <i class="fa fa-sign-in"></i> Login
+                                </a>
+                            {{/if}}
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            {{! jump-to-ticket}}
-
-            {{! <div class="row"> <div class="col-sm-12"> <button class="btn btn-block btn-primary">Compose</button> </div> </div> }}
+            <div class="nav-color-darker">
+                <div class="row">
+                    <div class="nav-section clearfix">
+                        <div class="col-sm-9">
+                            Queries
+                        </div>
+                        <div class="col-sm-3 text-right">
+                            {{#link-to 'search.new' class="pull-right"}}
+                                <i class="fa fa-plus-circle"></i>
+                            {{/link-to}}
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="row">
-
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">
-                        {{#link-to 'search.new' class="pull-right"}}
-                            <i class="fa fa-plus-circle"></i>
-                        {{/link-to}}
-                        Searches
-                    </h3>
-                </div>
-                <div class="panel-body">
-                <ul class="list-group">
-                    {{#each model as |search|}}
-                        <li class="list-group-item">
-                            <span class="badge">
-                                {{#link-to "search.edit" search.id class=""}}
-                                    <i class="fa fa-pencil"></i>
-                                {{/link-to}}
-                            </span>
+                {{#each model as |search|}}
+                    <div class="nav-item clearfix">
+                        <div class="col-xs-9">
                             {{#link-to "search.show" search.id tagName="div" class="search-item" href=false}}
-                            {{#link-to "search.show" search.id class=""}}
-                                {{search.name}}
+                                {{#link-to "search.show" search.id class=""}}
+                                    {{search.name}}
+                                {{/link-to}}
                             {{/link-to}}
+                        </div>
+                        <div class="col-xs-3 text-right">
+                            {{#link-to "search.edit" search.id class=""}}
+                                <i class="fa fa-pencil"></i>
                             {{/link-to}}
-                        </li>
-                    {{/each}}
-                </ul>
-                </div>
-            </div>
-
+                        </div>
+                    </div>
+                {{/each}}
             </div>
 
         </div>
     </div>
 
     {{outlet}}
-
 </div>
