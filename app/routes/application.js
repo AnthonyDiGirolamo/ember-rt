@@ -8,6 +8,8 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
         },
 
         showModal: function(name, model) {
+            console.log(name);
+            console.log(model);
             this.render(name, {
                 into: 'application',
                 outlet: 'modal',

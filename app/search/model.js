@@ -1,14 +1,20 @@
 import Ember from 'ember';
 import DS from 'ember-data';
+import _ from 'lodash/lodash';
 import { parseSearch } from '../utils/rt-api-parser';
 
 export default DS.Model.extend({
     name:      DS.attr('string'),
     rtquery:   DS.attr('string'),
     rtorderby: DS.attr('string'),
+    lastUpdated: DS.attr('string'),
 
     rtQueryString: function() {
-        let q = `/REST/1.0/search/ticket?query=${this.get('rtquery')}&format=l`
+        let rawq =  _.collect((this.get('rtquery') || "").split('\n'), (line) => {
+            return line.trim(); // blank line
+        }).join('');
+
+        let q = `/REST/1.0/search/ticket?query=${rawq}&format=l`;
         if ( this.get('rtorderby') ) {
             q += `&orderby=${this.get('rtorderby')}`;
         }
@@ -32,6 +38,6 @@ export default DS.Model.extend({
                 // Ember.run(null, reject, xhr.responseText);
             });
         });
-    }.property('rtQueryString'),
+    }.property('lastUpdated'),
     // tickets:   DS.hasMany('tickets', {async: true})
 });

@@ -43,18 +43,21 @@
             <div class="row">
                 {{#each model as |search|}}
                     <div class="nav-item clearfix">
-                        <div class="col-xs-9">
+                        <div class="col-xs-8">
                             {{#link-to "search.show" search.id tagName="div" class="item-left-link" href=false}}
                                 {{#link-to "search.show" search.id class=""}}
                                     {{search.name}}
                                 {{/link-to}}
                             {{/link-to}}
                         </div>
-                        <div class="col-xs-3 text-right">
+                        <div class="col-xs-4 text-right">
                             <div class="item-right-link">
-                                {{#link-to "search.edit" search.id class=""}}
+                                {{!link-to "search.edit" search.id class=""}}
+                                    {{! <i class="fa fa-pencil"></i> }}
+                                {{!link-to}}
+                                <a class="" {{action "showModal" "search.edit" search}}>
                                     <i class="fa fa-pencil"></i>
-                                {{/link-to}}
+                                </a>
                             </div>
                         </div>
                     </div>
