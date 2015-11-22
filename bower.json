@@ -14,5 +14,9 @@
     "qunit": "~1.20.0",
     "ember-localstorage-adapter": "~0.5.5",
     "bootstrap": "~3.3.5"
+  },
+  "resolutions": {
+    "ember": "1.13.11",
+    "ember-data": "1.13.15"
   }
 }
