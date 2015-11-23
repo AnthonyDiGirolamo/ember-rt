@@ -99,7 +99,7 @@ $blue-dark: #3367D6;
 
 .avatar {
     float: left;
-    margin-top: 1em;
+    /* margin-top: 1em; */
     margin-right: 1em;
     position: relative;
 }
@@ -142,11 +142,12 @@ $blue-dark: #3367D6;
 
 /* Make the navigation 100% width on phones */
 #nav {
+    z-index: 10;
     width: 100%;
     height: 40px;
     position: relative;
     background: #FFF;
-    box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.50);
+    box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.50);
     /* text-align: center; */
 
     .nav-menu-button {
@@ -201,91 +202,59 @@ $blue-dark: #3367D6;
  * -- EMAIL STYLES --
  * Styles relevant to the email messages, labels, counts, and more.
  */
-.email-count {
-    color: rgb(75, 113, 151);
-}
 
-.email-label-personal, .email-label-work, .email-label-travel {
-    width: 15px;
-    height: 15px;
-    display: inline-block;
-    margin-right: 0.5em;
-    border-radius: 3px;
+.email-right {
+    float: right;
+    margin: 0;
+    text-align: right;
 }
-.email-label-personal {
-    background: #ffc94c;
-}
-.email-label-work {
-    background: #41ccb4;
-}
-.email-label-travel {
-    background: #40c365;
-}
-
 
 /* Email Item Styles */
+.email-item-group {
+    padding-top: 1em;
+    padding-right: 1.5em;
+    padding-bottom: 1em;
+    padding-left: 1.5em;
+}
+
 .email-item {
-    padding: 0.9em 1em;
-    border-bottom: 1px solid #ddd;
-    border-left: 6px solid transparent;
+    background-color: #FFF;
+    border-bottom: 1px solid #FFF;
+    /* border-left: 6px solid transparent; */
+    /* box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.50); */
+    box-shadow: 0 -1px 0 #e5e5e5,0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
+
+    padding: .5em 1em;
+
+    a:hover {
+        text-decoration: none;
+    }
+
 }
-.email-avatar {
-    border-radius: 3px;
-    margin-right: 0.5em;
+
+div.email-item[class~="active"] {
+        border-right: 4px solid $blue;
 }
+
 .email-name,
 .email-subject {
     margin: 0;
 }
+
 .email-name {
     text-transform: uppercase;
-    color: #999;
-}
-.email-desc {
-    font-size: 80%;
-    margin: 0.4em 0;
+    color: #000;
+    font-weight: bold;
 }
 
-.email-item-selected {
-    background: #eee;
+p.email-desc {
+    font-size: 80%;
+    margin: 0;
 }
+
 .email-item-unread {
     border-left: 6px solid #1b98f8;
 }
-
-/* Email Content Styles */
-.email-content-header {
-    border-bottom: 1px solid #ddd;
-    border-top: 1px solid #ddd;
-    .email-content-body, .email-content-footer {
-        padding: 1em 2em;
-    }
-}
-
-.email-content-title {
-    margin: 0.5em 0 0;
-}
-.email-content-subtitle {
-    font-size: 1em;
-    margin: 0;
-    font-weight: normal;
-    span {
-        color: #999;
-    }
-}
-.email-content-controls {
-    margin-top: 2em;
-    text-align: right;
-    .secondary-button {
-        margin-bottom: 0.3em;
-    }
-}
-
-.email-avatar {
-    width: 40px;
-    height: 40px;
-}
-
 
 $nav-bar-width: 200px;
 $message-list-width: 400px;
@@ -311,7 +280,6 @@ $message-list-width: 400px;
         overflow: auto;
     }
     #nav {
-        /* border-right: 1px solid #ddd; */
         margin-left:-($nav-bar-width + $message-list-width); /* "left col (nav + list)" width */
         width:$nav-bar-width;
         height: 100%;
@@ -330,7 +298,7 @@ $message-list-width: 400px;
 
     #list {
         margin-left: -$message-list-width;
-        width: 100%;
+        /* width: 100%; */
         height: 33%;
         border-bottom: 1px solid #ddd;
     }
@@ -352,13 +320,13 @@ $message-list-width: 400px;
  * On desktops and other large-sized devices, we want to customize some
  * of the mobile styles.
  */
-@media (min-width: 60em) {
+@media (min-width: 874px) {
     /* This will take up the entire height, and be a little thinner */
     #list {
         margin-left: -$message-list-width;
         width: $message-list-width;
         height: 100%;
-        border-right: 1px solid #ddd;
+        /* border-right: 1px solid #ddd; */
     }
 
     /* This will now take up it's own column, so don't need position: fixed; */

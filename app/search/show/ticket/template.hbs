@@ -1,21 +1,11 @@
-<div id="main" class="pure-u-1">
+<div id="main">
 
-    <div class="email-content">
-        <div class="email-content-header pure-g">
-            <div class="pure-u-1-2">
-                <h1 class="email-content-title">{{model.subject}}</h1>
-                <p class="email-content-subtitle">
-                    From <a>{{model.requestors}}</a> at <span>{{model.created}}</span>
-                </p>
-            </div>
-            <div class="email-content-controls pure-u-1-2">
-                <button class="secondary-button pure-button">Reply</button>
-                <button class="secondary-button pure-button">Forward</button>
-                <button class="secondary-button pure-button">Move to</button>
-            </div>
-        </div>
-
-        <div class="email-content-body">
+    <div class="row">
+        <div class="col-xs-12">
+            <h4 class="email-content-title">{{model.subject}}</h4>
+            <p class="email-content-subtitle">
+                From <a>{{model.requestors}}</a> at <span>{{model.created}}</span>
+            </p>
             <ul>
                 <li>Subject:         {{model.subject}}</li>
                 <li>requestors:      {{model.requestors}}</li>
@@ -43,37 +33,30 @@
         </div>
     </div>
 
-    {{! #each model.attachments as |attachment|}}
-        {{! <pre> }}
+
+    <div class="row">
+        <div class="col-xs-12">
+            {{! #each model.attachments as |attachment|}}
+            {{! <pre> }}
             {{! attachments.body}}
-        {{! </pre> }}
-    {{! /each}}
-
-    {{#each model.messages as |message|}}
-        <div class="email-content">
-            <div class="email-content-header pure-g">
-                <div class="pure-u-1-2">
-                    <h1 class="email-content-title">{{message.title}}</h1>
-                    {{! <p class="email-content-subtitle"> }}
-                    {{!   From <a>Tilo Mitra</a> at <span>3:56pm, April 3, 2012</span> }}
-                    {{! </p> }}
-                </div>
-
-                <div class="email-content-controls pure-u-1-2">
-                    <button class="secondary-button pure-button">Reply</button>
-                    <button class="secondary-button pure-button">Forward</button>
-                    <button class="secondary-button pure-button">Move to</button>
-                </div>
-            </div>
-
-            <div class="email-content-body">
+            {{! </pre> }}
+            {{! /each}}
+            {{#each model.messages as |message|}}
+                <h4 class="email-content-title">{{message.title}}</h4>
+                {{! <p class="email-content-subtitle"> }}
+                {{!   From <a>Tilo Mitra</a> at <span>3:56pm, April 3, 2012</span> }}
+                {{! </p> }}
+                <button class="secondary-button pure-button">Reply</button>
+                <button class="secondary-button pure-button">Forward</button>
+                <button class="secondary-button pure-button">Move to</button>
                 {{#each message.emails as |email|}}
                     <pre>{{email.body}}
                     </pre>
                 {{/each}}
-            </div>
+            {{/each}}
         </div>
-                {{/each}}
+    </div>
+
 
 </div>
 

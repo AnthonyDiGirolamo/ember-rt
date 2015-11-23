@@ -2,19 +2,30 @@
 <div id="list" class="">
 
     {{#if model.rtquery}}
-        {{#each model.tickets as |ticket|}}
-            {{#link-to 'search.show.ticket' ticket.id}}
-                {{! <div class="email-item email-item-selected pure-g"> }}
-                <div class="email-item">
-                    {{email-avatar avatarType='color' emailAddress=ticket.requestors}}
-                    <h5 class="email-name">{{ticket.requestors}}</h5>
-                    <h4 class="email-subject">{{ticket.subject}}</h4>
-                    <p class="email-desc">
-                        {{ticket.queue}}, {{ticket.status}}, {{ticket.lastUpdated}}
-                    </p>
-                </div>
-            {{/link-to}}
-        {{/each}}
+        <div class="email-item-group">
+            {{#each model.tickets as |ticket|}}
+                {{#link-to 'search.show.ticket' ticket.id tagName="div" class="email-item" href=false}}
+                    {{#link-to 'search.show.ticket' ticket.id}}
+                        {{! <div class="email-item email-item-selected pure-g"> }}
+                        {{email-avatar avatarType='color' emailAddress=ticket.requestors}}
+                        <p class="email-name">{{ticket.requestors}}</p>
+                        <p class="email-subject">{{ticket.subject}}</p>
+                        <p class="email-right">
+                            {{ticket.lastUpdated}}
+                        </p>
+                        <p class="email-desc">
+                            <span class="label label-default">
+                            {{ticket.queue}}
+                            </span>
+                            &nbsp;
+                            <span class="label label-default">
+                            {{ticket.status}}
+                            </span>
+                        </p>
+                    {{/link-to}}
+                {{/link-to}}
+            {{/each}}
+        </div>
     {{/if}}
 
   {{! <div class="email-item email-item-unread pure-g"> }}
