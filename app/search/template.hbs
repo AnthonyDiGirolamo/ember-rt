@@ -7,17 +7,19 @@
             <div class="nav-color">
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="nav-center-link">
-                            {{#link-to 'search' class="logo"}}
-                                <i class="fa fa-ticket"></i> Ember-RT
+                        <div class="nav-icon-link hint--right" data-hint="Home">
+                            {{#link-to 'search' }}
+                                <i class="fa fa-ticket"></i>
                             {{/link-to}}
                         </div>
-                        <div class="nav-center-link">
+                        <div class="nav-icon-link">
                             {{#if session.isAuthenticated}}
-                                <button class="btn btn-block btn-primary" {{action 'invalidateSession'}}>Logout</button>
+                                <a class="" {{action 'invalidateSession'}}>
+                                    <i class="fa fa-sign-out"></i>
+                                </a>
                             {{else}}
-                                <a class="" {{action "showModal" "login"}}>
-                                    <i class="fa fa-sign-in"></i> Login
+                                <a class="hint--right" data-hint="Login" {{action "showModal" "login"}}>
+                                    <i class="fa fa-sign-in"></i>
                                 </a>
                             {{/if}}
                         </div>

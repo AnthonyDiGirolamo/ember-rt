@@ -1,4 +1,5 @@
 import _ from 'lodash/lodash';
+import moment from 'moment';
 import MimeParser from 'npm:mimeparser';
 
 function parseTicketMetadata(data) {
@@ -20,6 +21,7 @@ function parseTicketMetadata(data) {
 
 function parseTicket(payload, namespace) {
     payload = payload.replace(/RT.*200 Ok\n\n/, '');
+    // console.log(payload);
 
     let data = parseTicketMetadata(payload);
 
@@ -123,8 +125,12 @@ function parseSearch(payload, namespace, search_id) {
 
     _.each(data, (ticket) => {
         ticket.id = ticket.id.replace("ticket/", "");
+
+        let rto = moment(ticket.lastUpdated);
+        ticket.relativeTimeAgo = rto.fromNow();
+        ticket.lastUpdatedUnixTime = rto.unix();
     });
-    // console.log(data);
+    console.log(data);
 
     return data;
 }

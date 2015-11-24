@@ -29,6 +29,7 @@ module.exports = function(defaults) {
   app.import('bower_components/ace-builds/src-noconflict/mode-sh.js');
   app.import('bower_components/ace-builds/src-noconflict/mode-c_cpp.js');
 
+  app.import('bower_components/hint.css/hint.css');
   // app.import('bower_components/bootstrap/dist/css/bootstrap.css');
   // app.import('bower_components/bootstrap/dist/css/bootstrap.css.map');
 

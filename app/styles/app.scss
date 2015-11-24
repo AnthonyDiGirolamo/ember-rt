@@ -35,6 +35,15 @@ $blue-dark: #3367D6;
             font-size: 18px;
         }
     }
+    .nav-icon-link {
+        font-size: 2em;
+        display: inline;
+        margin-left: .5em;
+        a:hover,
+        a:focus {
+            text-decoration: none;
+        }
+    }
 
     .nav-section {
         // top right bottom left
@@ -221,9 +230,9 @@ $blue-dark: #3367D6;
     background-color: #FFF;
     border-bottom: 1px solid #FFF;
     box-shadow: 0 -1px 0 #e5e5e5,0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
-    border-right: 4px solid white;
+    border-left: 4px solid white;
 
-    padding: .5em 1em;
+    padding: .5em 0.75em;
 
     a:hover, a:focus {
         text-decoration: none;
@@ -231,8 +240,8 @@ $blue-dark: #3367D6;
 
 }
 
-div.email-item[class~="active"] {
-        border-right: 4px solid $blue;
+div.email-item.active {
+    border-left: 4px solid $blue;
 }
 
 .email-name,

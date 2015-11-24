@@ -11,7 +11,7 @@ export default DS.Model.extend({
     rtorderby: DS.attr('string', {
         defaultValue: function() { return ""; }
     }),
-    lastUpdated: DS.attr('string', {
+    lastRefreshed: DS.attr('string', {
         defaultValue: function() { return Math.floor(new Date() / 1000); }
     }),
 
@@ -44,6 +44,6 @@ export default DS.Model.extend({
                 // Ember.run(null, reject, xhr.responseText);
             });
         });
-    }.property('lastUpdated'),
+    }.property('lastRefreshed'),
     // tickets:   DS.hasMany('tickets', {async: true})
 });

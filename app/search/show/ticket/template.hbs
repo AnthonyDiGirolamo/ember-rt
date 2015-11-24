@@ -13,22 +13,23 @@
                 <li>adminCc:         {{model.adminCc}}</li>
                 <li>cc:              {{model.cc}}</li>
                 <li>cfUaDevCodebase: {{model.cfUaDevCodebase}}</li>
-                <li>created:         {{model.created}}</li>
                 <li>creator:         {{model.creator}}</li>
                 <li>due:             {{model.due}}</li>
                 <li>finalPriority:   {{model.finalPriority}}</li>
                 <li>initialPriority: {{model.initialPriority}}</li>
-                <li>lastUpdated:     {{model.lastUpdated}}</li>
                 <li>priority:        {{model.priority}}</li>
                 <li>queue:           {{model.queue}}</li>
-                <li>resolved:        {{model.resolved}}</li>
-                <li>started:         {{model.started}}</li>
                 <li>starts:          {{model.starts}}</li>
                 <li>status:          {{model.status}}</li>
                 <li>timeEstimated:   {{model.timeEstimated}}</li>
                 <li>timeLeft:        {{model.timeLeft}}</li>
                 <li>timeWorked:      {{model.timeWorked}}</li>
+
+                <li>created:         {{moment-from-now model.created}}</li>
+                <li>started:         {{model.started}}</li>
                 <li>told:            {{model.told}}</li>
+                <li>lastUpdated:     {{model.lastUpdated}}</li>
+                <li>resolved:        {{model.resolved}}</li>
             </ul>
         </div>
     </div>
