@@ -15,6 +15,18 @@ export default DS.Model.extend({
         defaultValue: function() { return Math.floor(new Date() / 1000); }
     }),
 
+    rtQueryParams: function(){
+        let params = {
+            query: _.collect((this.get('rtquery') || "").split('\n'), (line) => {
+                return line.trim(); // blank line
+            }).join('')
+        };
+        if ( this.get('rtorderby') ) {
+            params.orderby = this.get('rtorderby');
+        }
+        return params;
+    }.property('rtquery', 'rtorderby'),
+
     rtQueryString: function() {
         let rawq =  _.collect((this.get('rtquery') || "").split('\n'), (line) => {
             return line.trim(); // blank line

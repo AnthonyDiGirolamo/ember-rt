@@ -130,7 +130,7 @@ function parseSearch(payload, namespace, search_id) {
         ticket.relativeTimeAgo = rto.fromNow();
         ticket.lastUpdatedUnixTime = rto.unix();
     });
-    console.log(data);
+    // console.log(data);
 
     return data;
 }

@@ -1,24 +1,39 @@
 import Ember from 'ember';
 import ApplicationAdapter from '../adapters/application';
-import { parseTicket, parseHistory, parseAttachment } from '../utils/rt-api-parser';
+import { parseSearch, parseTicket, parseHistory, parseAttachment } from '../utils/rt-api-parser';
 
 export default ApplicationAdapter.extend({
-    buildURL: function(root, suffix, record) {
-        // console.log(root);
-        // console.log(suffix);
-        // console.log(record);
-        // let url = this._super();
-        let url = `${url}/ticket/${suffix}/show`;
-        // if (url.toString().contains('conversations')){
-        //     url = url.replace('conversations', 'me/convos');
-        // }
-        // console.log(url);
-        return url;
+    // find: function(store, type, id, snapshot) {
+    //     console.log("ticket adapter find");
+    //     console.log([store, type, id, snapshot]);
+    //     return {};
+    // },
+
+    // ticket search method
+    query: function(store, type, query, snapshot) {
+        console.log("ticket adapter query");
+        console.log([store, type, query, snapshot]);
+
+        let url = `/REST/1.0/search/ticket?query=${query.query}&format=l`;
+        console.log(url);
+        return new Ember.RSVP.Promise((resolve, reject) => {
+            Ember.$.ajax(url, 'ticket', {
+                method: 'GET',
+                dataType: 'html'
+            }).then((data, textStatus, xhr) => {
+                Ember.run(null, resolve, parseSearch(data));
+            }, (xhr, status, error) => {
+                console.log("fail:");
+                console.log(xhr.responseText);
+                // xhr.then = null;
+                Ember.run(null, reject, xhr.responseText);
+            });
+        });
     },
 
     findRecord: function(store, type, id, snapshot) {
 
-        // console.log("findRecord");
+        console.log("ticket findRecord");
         // console.log([store, type, id, snapshot]);
 
         // var url = [type.modelName, id].join('/');
@@ -59,9 +74,7 @@ export default ApplicationAdapter.extend({
         // console.log("ticket findHasMany");
         // console.log([store, snapshot, url, relationship]);
         // var parent_ticket = snapshot;
-        // console.log("url:");
         // console.log(url);
-        // // var url = this.urlPrefix(url, this.buildURL(type, id, null, 'findHasMany'));
 
         return new Ember.RSVP.Promise((resolve, reject) => {
             Ember.$.ajax(url, relationship.type, {
