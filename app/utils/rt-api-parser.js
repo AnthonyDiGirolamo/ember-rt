@@ -130,8 +130,9 @@ function parseSearch(payload, namespace, search_id) {
         ticket.relativeTimeAgo = rto.fromNow();
         ticket.lastUpdatedUnixTime = rto.unix();
     });
-    // console.log(data);
 
+    data = {"tickets": data};
+    // console.log(data);
     return data;
 }
 

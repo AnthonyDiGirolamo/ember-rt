@@ -10,19 +10,17 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     afterModel: function(model) {
         console.log("search show route after model");
         return this.store.find('ticket', model.get('rtQueryParams')).then((data) => {
-            console.log(data);
+            // console.log(data);
             this.set('tickets', data);
         });
     },
-
-    tickets: function() {
-        console.log("search show tickets");
-        console.log(this.get('model'));
-        console.log(this.get('model').get('rtquery'));
-        let q = this.get('model').get('rtQueryParams');
-        console.log(q);
-        return this.store.find('ticket', q);
-    }.property(),
+    setupController: function(controller, model) {
+        console.log("search show route setupController");
+        // console.log(model);
+        // console.log(this.get('tickets'));
+        controller.set('model', model)
+        controller.set('tickets', this.get('tickets'))
+    },
 
     actions: {
     }
