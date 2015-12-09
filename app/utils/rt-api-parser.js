@@ -2,8 +2,8 @@ import _ from 'lodash/lodash';
 import moment from 'moment';
 import MimeParser from 'npm:mimeparser';
 
-function parseTicketMetadata(data) {
-    return _.chain(data.split('\n'))
+function parseTicketMetadata(data, namespace) {
+    let ticket = _.chain(data.split('\n'))
         .reject((line) => {
             return !line.trim(); // blank line
         })
@@ -17,19 +17,21 @@ function parseTicketMetadata(data) {
         })
         .zipObject()
         .value();
+    ticket.id = ticket.id.replace("ticket/", "");
+    ticket.links = {
+        "messages": `${namespace}/ticket/${ticket.id}/history`, // ?format=l
+        "attachments": `${namespace}/ticket/${ticket.id}/attachments`
+    };
+    console.log(ticket);
+    return ticket;
 }
 
 function parseTicket(payload, namespace) {
     payload = payload.replace(/RT.*200 Ok\n\n/, '');
     // console.log(payload);
 
-    let data = parseTicketMetadata(payload);
+    let data = parseTicketMetadata(payload, namespace);
 
-    data.id = data.id.replace("ticket/", "");
-    data.links = {
-        "messages": `${namespace}/ticket/${data.id}/history`, // ?format=l
-        "attachments": `${namespace}/ticket/${data.id}/attachments`
-    };
     data = {"ticket": data};
     // console.log(data);
     return data;
@@ -120,11 +122,11 @@ function parseSearch(payload, namespace, search_id) {
     // console.log(payload);
 
     let data = _.collect(payload.split('\n\n--\n\n'), (ticket) => {
-        return parseTicketMetadata(ticket);
+        return parseTicketMetadata(ticket, namespace);
     });
 
     _.each(data, (ticket) => {
-        ticket.id = ticket.id.replace("ticket/", "");
+        // ticket.id = ticket.id.replace("ticket/", "");
 
         let rto = moment(ticket.lastUpdated);
         ticket.relativeTimeAgo = rto.fromNow();

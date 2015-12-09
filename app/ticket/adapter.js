@@ -11,7 +11,7 @@ export default ApplicationAdapter.extend({
 
     // ticket search method
     query: function(store, type, query, snapshot) {
-        console.log("ticket adapter query");
+        console.log("ticket/adapter query");
         console.log([store, type, query, snapshot]);
 
         let url = `/REST/1.0/search/ticket?query=${query.query}&format=l`;
@@ -21,7 +21,7 @@ export default ApplicationAdapter.extend({
                 method: 'GET',
                 dataType: 'html'
             }).then((data, textStatus, xhr) => {
-                Ember.run(null, resolve, parseSearch(data));
+                Ember.run(null, resolve, parseSearch(data, this.namespace));
             }, (xhr, status, error) => {
                 console.log("fail:");
                 console.log(xhr.responseText);
@@ -32,8 +32,7 @@ export default ApplicationAdapter.extend({
     },
 
     findRecord: function(store, type, id, snapshot) {
-
-        console.log("ticket findRecord");
+        console.log("ticket/adapter findRecord");
         // console.log([store, type, id, snapshot]);
 
         // var url = [type.modelName, id].join('/');
