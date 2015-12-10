@@ -20,7 +20,7 @@ function parseTicketMetadata(data, namespace) {
         .value();
     ticket.id = ticket.id.replace("ticket/", "");
     ticket.links = {
-        "messages": `${namespace}/ticket/${ticket.id}/history`, // ?format=l
+        "messages": `${namespace}/ticket/${ticket.id}/history`, // ?format=l`
         "attachments": `${namespace}/ticket/${ticket.id}/attachments`
     };
     // console.log(ticket);
@@ -41,6 +41,8 @@ function parseTicket(payload, namespace) {
 function parseHistory(payload, namespace, ticket_id) {
     // console.log(payload);
     // let data = payload.split('\n--\n');
+
+    // Short Format example
 
     // RT/4.2.12 200 Ok
     //
@@ -77,11 +79,20 @@ function parseEmail(payload, namespace, message_id, ticket_id) {
     // let data = _.chain( payload.split('\n\n'))
     //     .value();
 
+    console.log(payload);
+    let content = /Content: ((.|[\r\n])*)\n\nCreator:/.exec(payload)[1];
+    content = content.replace(/^         /m, "");
+
     let data = {"emails": [
-        { "id": message_id,
-          "body": payload,
+        { id: message_id,
+          body: payload,
+          created_at: /^Created: (.*)$/m.exec(payload)[1],
+          creator: /^Creator: (.*)$/m.exec(payload)[1],
+          description: /^Description: (.*)$/m.exec(payload)[1],
+          updateType: /^Type: (.*)$/m.exec(payload)[1],
+          content: content
+          // "links": { "attachments": `${namespace}/ticket/${ticket_id}/attachments/${attachment_id}` }
         }]};
-    // data.links = { "attachments": `${namespace}/ticket/${data.id}/attachments/${attachment_id}` };
 
     // parser.write(payload);
     // parser.end();
