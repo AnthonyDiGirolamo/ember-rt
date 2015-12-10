@@ -23,5 +23,8 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     },
 
     actions: {
+        reloadSearch: function() {
+            this.refresh();
+        }
     }
 });

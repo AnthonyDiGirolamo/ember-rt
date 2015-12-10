@@ -3,6 +3,7 @@ import moment from 'moment';
 import MimeParser from 'npm:mimeparser';
 
 function parseTicketMetadata(data, namespace) {
+    // console.log(data);
     let ticket = _.chain(data.split('\n'))
         .reject((line) => {
             return !line.trim(); // blank line
@@ -22,7 +23,7 @@ function parseTicketMetadata(data, namespace) {
         "messages": `${namespace}/ticket/${ticket.id}/history`, // ?format=l
         "attachments": `${namespace}/ticket/${ticket.id}/attachments`
     };
-    console.log(ticket);
+    // console.log(ticket);
     return ticket;
 }
 

@@ -41,7 +41,6 @@ export default ApplicationAdapter.extend({
         // console.log("url:");
         // console.log(url);
 
-
         return new Ember.RSVP.Promise((resolve, reject) => {
             Ember.$.ajax(url, type.modelName, {
                 method: 'GET',

@@ -5,17 +5,23 @@ import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mi
 export default Ember.Route.extend(ApplicationRouteMixin, {
     model: function(params) {
         console.log("search/show/ticket/route model");
-        console.log(params);
-        let ticket = this.store.find('ticket', params.ticket_id);
-        // console.log(ticket);
-        // ticket.refresh();
+        let ticket = this.store.findRecord('ticket', params.ticket_id, { reload: true }); // always reload
         return ticket;
     },
-    afterModel: function(model) {
-        console.log("search/show/ticket/route afterModel");
-        // return this.store.find('ticket', model.get('id'));
-        // this.modelFor('ticket').reload();
-    },
+    // afterModel: function(model) {
+    //     console.log("search/show/ticket/route afterModel");
+    // },
     actions: {
+        reloadTicket: function() {
+            console.log("search/show/ticket/route reloadTicket");
+            // this.refresh();
+            this.modelFor('search/show/ticket').reload().then((ticket) => {
+                ticket.get('messages').reload().then((messages) => {
+                    messages.forEach((message) => {
+                        message.get('emails').reload();
+                    });
+                });
+            });
+        }
     }
 });
