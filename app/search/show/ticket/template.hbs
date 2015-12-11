@@ -89,36 +89,38 @@
         <div class="col-xs-12">
             {{#each model.messages as |message|}}
 
-                <div class="email-item-group">
-                    {{#each message.emails as |email|}}
+                {{#each message.emails as |email|}}
 
-                        {{#if email.isAnEmail }}
+                    {{#if email.isAnEmail }}
+                        <div class="email-item-group">
                             <div class="email-item">
-                                <p class="pull-right">
+                                <span class="pull-right">
                                     <span class="hint--left" data-hint="{{email.created}}">
                                         <i class="fa fa-clock-o"></i>
                                         {{moment-from-now email.created}}
                                     </span>
-                                </p>
+                                </span>
                                 <i class="fa fa-{{email.iconClass}}"></i>
                                 {{email.description}}
                                 <pre>{{email.content}}</pre>
                             </div>
-                        {{else}}
+                        </div>
+                    {{else}}
+                        <div class="email-item-group-update">
                             <div class="email-update">
-                                <p class="pull-right">
+                                <span class="pull-right">
                                     <span class="hint--left" data-hint="{{email.created}}">
                                         <i class="fa fa-clock-o"></i>
                                         {{moment-from-now email.created}}
                                     </span>
-                                </p>
+                                </span>
                                 <i class="fa fa-{{email.iconClass}}"></i>
                                 {{email.description}}
                             </div>
-                        {{/if}}
+                        </div>
+                    {{/if}}
 
-                    {{/each}}
-                </div>
+                {{/each}}
 
             {{/each}}
         </div>
