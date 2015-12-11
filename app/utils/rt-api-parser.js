@@ -79,18 +79,42 @@ function parseEmail(payload, namespace, message_id, ticket_id) {
     // let data = _.chain( payload.split('\n\n'))
     //     .value();
 
-    console.log(payload);
-    let content = /Content: ((.|[\r\n])*)\n\nCreator:/.exec(payload)[1];
-    content = content.replace(/^         /m, "");
+    // console.log(payload);
+    let content = /Content: ((.|[\r\n])*)Creator:/.exec(payload);
+    if (content) {
+        content = _.collect(content[1].split('\n'), (line) => {
+            return line.replace(/^         /m, "");
+        }).join('\n');
+    }
+
+    // let attachments = _.first(/Attachments: ((.|[\r\n])*)$/.exec(payload));
+    // console.log(attachments);
+    // if (attachments) {
+    //     attachments = _.chain(attachments.split('\n'))
+    //     .reject((line) => {
+    //         return !line.trim(); // blank line
+    //     })
+    //     .collect((line) => {
+    //         let first_colon_index = line.indexOf(': ');
+    //         return _.map([line.slice(0, first_colon_index), line.slice(first_colon_index+2)], _.trim);
+    //     })
+    //     .value();
+    //     console.log(attachments);
+    // }
 
     let data = {"emails": [
-        { id: message_id,
-          body: payload,
-          created_at: /^Created: (.*)$/m.exec(payload)[1],
-          creator: /^Creator: (.*)$/m.exec(payload)[1],
-          description: /^Description: (.*)$/m.exec(payload)[1],
-          updateType: /^Type: (.*)$/m.exec(payload)[1],
-          content: content
+        { id:            message_id,
+          body:          payload,
+          created_at:    /^Created: (.*)$/m.exec(payload)[1],
+          creator:       /^Creator: (.*)$/m.exec(payload)[1],
+          description:   /^Description: (.*)$/m.exec(payload)[1],
+          updateType:    /^Type: (.*)$/m.exec(payload)[1],
+          changedField:  /^Field: (.*)$/m.exec(payload)[1],
+          oldFieldValue: /^OldValue: (.*)$/m.exec(payload)[1],
+          newFieldValue: /^NewValue: (.*)$/m.exec(payload)[1],
+          subject:       /^Data: (.*)$/m.exec(payload)[1],
+          timeTaken:     /^TimeTaken: (.*)$/m.exec(payload)[1],
+          content:       content
           // "links": { "attachments": `${namespace}/ticket/${ticket_id}/attachments/${attachment_id}` }
         }]};
 
