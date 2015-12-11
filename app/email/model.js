@@ -14,7 +14,8 @@ export default DS.Model.extend({
         "Set": "hand-o-right",
         "AddWatcher": "eye",
         "SetWatcher": "eye",
-        "DelWatcher": "eye"
+        "DelWatcher": "eye",
+        "CustomField": "tag"
     },
 
     body:          DS.attr('string'),

@@ -91,6 +91,7 @@
 
                 <div class="email-item-group">
                     {{#each message.emails as |email|}}
+
                         {{#if email.isAnEmail }}
                             <div class="email-item">
                                 <p class="pull-right">
@@ -101,8 +102,7 @@
                                 </p>
                                 <i class="fa fa-{{email.iconClass}}"></i>
                                 {{email.description}}
-                                <pre>{{email.content}}
-                                </pre>
+                                <pre>{{email.content}}</pre>
                             </div>
                         {{else}}
                             <div class="email-update">
@@ -116,6 +116,7 @@
                                 {{email.description}}
                             </div>
                         {{/if}}
+
                     {{/each}}
                 </div>
 

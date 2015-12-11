@@ -6,11 +6,6 @@ body {
     height: 256px;
 }
 
-pre {
-    background-color: #FFFFFF;
-    border: 0px solid #000000;
-}
-
 $blue: #4285F4;
 $blue-dark: #3367D6;
 
@@ -249,6 +244,12 @@ $blue-dark: #3367D6;
 
     a:hover, a:focus {
         text-decoration: none;
+    }
+
+    pre {
+        margin: 0;
+        background-color: #FFFFFF;
+        border: 0px solid #000000;
     }
 
 }
