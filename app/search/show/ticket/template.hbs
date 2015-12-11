@@ -2,62 +2,115 @@
 
     <div class="row">
         <div class="col-xs-12">
-            <a class="btn btn-default btn-sm" {{action "reloadTicket"}}>
-                <i class="fa fa-refresh"></i>Refresh
-            </a>
             <h4 class="email-content-title">{{model.subject}}</h4>
-            <p class="email-content-subtitle">
-                From <a>{{model.requestors}}</a> at <span>{{model.created}}</span>
-            </p>
-            <ul>
-                <li>ID:              {{model.id}}</li>
-                <li>Subject:         {{model.subject}}</li>
-                <li>requestors:      {{model.requestors}}</li>
-                <li>owner:           {{model.owner}}</li>
-                <li>adminCc:         {{model.adminCc}}</li>
-                <li>cc:              {{model.cc}}</li>
-                <li>cfUaDevCodebase: {{model.cfUaDevCodebase}}</li>
-                <li>creator:         {{model.creator}}</li>
-                <li>due:             {{model.due}}</li>
-                <li>finalPriority:   {{model.finalPriority}}</li>
-                <li>initialPriority: {{model.initialPriority}}</li>
-                <li>priority:        {{model.priority}}</li>
-                <li>queue:           {{model.queue}}</li>
-                <li>starts:          {{model.starts}}</li>
-                <li>status:          {{model.status}}</li>
-                <li>timeEstimated:   {{model.timeEstimated}}</li>
-                <li>timeLeft:        {{model.timeLeft}}</li>
-                <li>timeWorked:      {{model.timeWorked}}</li>
 
-                <li>created:         {{moment-from-now model.created}}</li>
-                <li>started:         {{model.started}}</li>
-                <li>told:            {{model.told}}</li>
-                <li>lastUpdated:     {{model.lastUpdated}}</li>
-                <li>resolved:        {{model.resolved}}</li>
-            </ul>
+            <div class="ticket-toolbar btn-toolbar" role="toolbar">
+                <div class="btn-group" role="group">
+                    <a class="btn btn-default btn-sm" {{action "reloadTicket"}}>
+                        <i class="fa fa-refresh"></i>Refresh
+                    </a>
+                </div>
+            </div>
+
+            <p class="email-content-subtitle">
+                From <a>{{model.requestors}}</a>
+                <span class="hint-bottom" data-hint="Created: {{model.created}}">
+                    <i class="fa fa-calendar"></i>
+                    {{moment-from-now model.created}}
+                </span>
+            </p>
+
+            <div class="col-xs-3 hint-bottom pull-left" data-hint="ID">
+                <i class="fa fa-info-circle"></i> {{model.id}}
+            </div>
+            <div class="col-xs-3 hint-bottom pull-left" data-hint="Owner">
+                <i class="fa fa-user-md"></i> {{model.owner}}
+            </div>
+            <!-- <div class="col-xs-3 hint-bottom pull-left" data-hint="adminCc">
+            <i class="fa fa-refresh"></i> {{model.adminCc}}
+            </div>
+            <div class="col-xs-3 hint-bottom pull-left" data-hint="cc">
+            <i class="fa fa-refresh"></i> {{model.cc}}
+            </div>
+            <div class="col-xs-3 hint-bottom pull-left" data-hint="ID">
+            <i class="fa fa-refresh"></i> {{model.cfUaDevCodebase}}
+            </div>
+            <div class="col-xs-3 hint-bottom pull-left" data-hint="ID">
+            <i class="fa fa-refresh"></i> creator:         {{model.creator}}
+            </div>
+            <div class="col-xs-3 hint-bottom pull-left" data-hint="ID">
+            <i class="fa fa-refresh"></i> due:             {{model.due}}
+            </div>
+            <div class="col-xs-3 hint-bottom pull-left" data-hint="ID">
+            <i class="fa fa-refresh"></i> finalPriority:   {{model.finalPriority}}
+            </div>
+            <div class="col-xs-3 hint-bottom pull-left" data-hint="ID">
+            <i class="fa fa-refresh"></i> initialPriority: {{model.initialPriority}}
+            </div>
+            <div class="col-xs-3 hint-bottom pull-left" data-hint="ID">
+            <i class="fa fa-refresh"></i> priority:        {{model.priority}}
+            </div> -->
+            <div class="col-xs-3 hint-bottom pull-left" data-hint="Queue">
+                <i class="fa fa-stack-overflow"></i> {{model.queue}}
+            </div>
+            <!-- <div class="col-xs-3 hint-bottom pull-left" data-hint="ID">
+            <i class="fa fa-refresh"></i> starts:          {{model.starts}}
+            </div>
+            <div class="col-xs-3 hint-bottom pull-left" data-hint="ID">
+            <i class="fa fa-refresh"></i> status:          {{model.status}}
+            </div>
+            <div class="col-xs-3 hint-bottom pull-left" data-hint="ID">
+            <i class="fa fa-refresh"></i> timeEstimated:   {{model.timeEstimated}}
+            </div>
+            <div class="col-xs-3 hint-bottom pull-left" data-hint="ID">
+            <i class="fa fa-refresh"></i> timeLeft:        {{model.timeLeft}}
+            </div>
+            <div class="col-xs-3 hint-bottom pull-left" data-hint="ID">
+            <i class="fa fa-refresh"></i> timeWorked:      {{model.timeWorked}}
+            </div>
+            <div class="col-xs-3 hint-bottom pull-left" data-hint="ID">
+            <i class="fa fa-refresh"></i> started:         {{model.started}}
+            </div>
+            <div class="col-xs-3 hint-bottom pull-left" data-hint="ID">
+            <i class="fa fa-refresh"></i> told:            {{model.told}}
+            </div>
+            <div class="col-xs-3 hint-bottom pull-left" data-hint="ID">
+            <i class="fa fa-refresh"></i> lastUpdated:     {{model.lastUpdated}}
+            </div>
+            <div class="col-xs-3 hint-bottom pull-left" data-hint="ID">
+            <i class="fa fa-refresh"></i> resolved:        {{model.resolved}}
+            </div>
+            -->
         </div>
     </div>
 
 
     <div class="row">
         <div class="col-xs-12">
-            {{! #each model.attachments as |attachment|}}
-            {{! <pre> }}
-            {{! attachments.body}}
-            {{! </pre> }}
-            {{! /each}}
             {{#each model.messages as |message|}}
-                <h4 class="email-content-title">{{message.title}}</h4>
-                {{! <p class="email-content-subtitle"> }}
-                {{!   From <a>Tilo Mitra</a> at <span>3:56pm, April 3, 2012</span> }}
-                {{! </p> }}
-                <button class="secondary-button pure-button">Reply</button>
-                <button class="secondary-button pure-button">Forward</button>
-                <button class="secondary-button pure-button">Move to</button>
-                {{#each message.emails as |email|}}
-                    <pre>{{email.body}}
-                    </pre>
-                {{/each}}
+
+                <div class="email-item-group">
+                    {{#each message.emails as |email|}}
+                        {{#if email.isAnEmail }}
+                            <div class="email-item">
+                                <p class="pull-right">
+                                    {{moment-from-now email.created}}
+                                </p>
+                                <i class="fa fa-{{email.iconClass}}"></i>
+                                {{email.description}}
+                                <pre>{{email.content}}
+                                </pre>
+                            </div>
+                        {{else}}
+                            <p class="pull-right">
+                                {{moment-from-now email.created}}
+                            </p>
+                            <i class="fa fa-{{email.iconClass}}"></i>
+                            {{email.description}}
+                        {{/if}}
+                    {{/each}}
+                </div>
+
             {{/each}}
         </div>
     </div>

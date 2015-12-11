@@ -6,6 +6,11 @@ body {
     height: 256px;
 }
 
+pre {
+    background-color: #FFFFFF;
+    border: 0px solid #000000;
+}
+
 $blue: #4285F4;
 $blue-dark: #3367D6;
 
@@ -212,6 +217,10 @@ $blue-dark: #3367D6;
  * Styles relevant to the email messages, labels, counts, and more.
  */
 
+.ticket-toolbar {
+    float: right;
+    margin-right: 1.5em;
+}
 .email-right {
     float: right;
     margin: 0;

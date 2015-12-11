@@ -85,6 +85,7 @@ function parseEmail(payload, namespace, message_id, ticket_id) {
         content = _.collect(content[1].split('\n'), (line) => {
             return line.replace(/^         /m, "");
         }).join('\n');
+        content = content.replace(/\n+$/, "");
     }
 
     // let attachments = _.first(/Attachments: ((.|[\r\n])*)$/.exec(payload));
@@ -105,7 +106,7 @@ function parseEmail(payload, namespace, message_id, ticket_id) {
     let data = {"emails": [
         { id:            message_id,
           body:          payload,
-          created_at:    /^Created: (.*)$/m.exec(payload)[1],
+          created:       /^Created: (.*)$/m.exec(payload)[1],
           creator:       /^Creator: (.*)$/m.exec(payload)[1],
           description:   /^Description: (.*)$/m.exec(payload)[1],
           updateType:    /^Type: (.*)$/m.exec(payload)[1],
