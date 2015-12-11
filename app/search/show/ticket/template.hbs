@@ -14,70 +14,70 @@
 
             <p class="email-content-subtitle">
                 From <a>{{model.requestors}}</a>
-                <span class="hint-bottom" data-hint="Created: {{model.created}}">
+                <span class="hint--bottom" data-hint="Created: {{model.created}}">
                     <i class="fa fa-calendar"></i>
                     {{moment-from-now model.created}}
                 </span>
             </p>
 
-            <div class="col-xs-3 hint-bottom pull-left" data-hint="ID">
+            <div class="col-xs-3 hint--bottom pull-left" data-hint="ID">
                 <i class="fa fa-info-circle"></i> {{model.id}}
             </div>
-            <div class="col-xs-3 hint-bottom pull-left" data-hint="Owner">
+            <div class="col-xs-3 hint--bottom pull-left" data-hint="Owner">
                 <i class="fa fa-user-md"></i> {{model.owner}}
             </div>
-            <!-- <div class="col-xs-3 hint-bottom pull-left" data-hint="adminCc">
+            <!-- <div class="col-xs-3 hint--bottom pull-left" data-hint="adminCc">
             <i class="fa fa-refresh"></i> {{model.adminCc}}
             </div>
-            <div class="col-xs-3 hint-bottom pull-left" data-hint="cc">
+            <div class="col-xs-3 hint--bottom pull-left" data-hint="cc">
             <i class="fa fa-refresh"></i> {{model.cc}}
             </div>
-            <div class="col-xs-3 hint-bottom pull-left" data-hint="ID">
+            <div class="col-xs-3 hint--bottom pull-left" data-hint="ID">
             <i class="fa fa-refresh"></i> {{model.cfUaDevCodebase}}
             </div>
-            <div class="col-xs-3 hint-bottom pull-left" data-hint="ID">
+            <div class="col-xs-3 hint--bottom pull-left" data-hint="ID">
             <i class="fa fa-refresh"></i> creator:         {{model.creator}}
             </div>
-            <div class="col-xs-3 hint-bottom pull-left" data-hint="ID">
+            <div class="col-xs-3 hint--bottom pull-left" data-hint="ID">
             <i class="fa fa-refresh"></i> due:             {{model.due}}
             </div>
-            <div class="col-xs-3 hint-bottom pull-left" data-hint="ID">
+            <div class="col-xs-3 hint--bottom pull-left" data-hint="ID">
             <i class="fa fa-refresh"></i> finalPriority:   {{model.finalPriority}}
             </div>
-            <div class="col-xs-3 hint-bottom pull-left" data-hint="ID">
+            <div class="col-xs-3 hint--bottom pull-left" data-hint="ID">
             <i class="fa fa-refresh"></i> initialPriority: {{model.initialPriority}}
             </div>
-            <div class="col-xs-3 hint-bottom pull-left" data-hint="ID">
+            <div class="col-xs-3 hint--bottom pull-left" data-hint="ID">
             <i class="fa fa-refresh"></i> priority:        {{model.priority}}
             </div> -->
-            <div class="col-xs-3 hint-bottom pull-left" data-hint="Queue">
+            <div class="col-xs-3 hint--bottom pull-left" data-hint="Queue">
                 <i class="fa fa-stack-overflow"></i> {{model.queue}}
             </div>
-            <!-- <div class="col-xs-3 hint-bottom pull-left" data-hint="ID">
+            <!-- <div class="col-xs-3 hint--bottom pull-left" data-hint="ID">
             <i class="fa fa-refresh"></i> starts:          {{model.starts}}
             </div>
-            <div class="col-xs-3 hint-bottom pull-left" data-hint="ID">
+            <div class="col-xs-3 hint--bottom pull-left" data-hint="ID">
             <i class="fa fa-refresh"></i> status:          {{model.status}}
             </div>
-            <div class="col-xs-3 hint-bottom pull-left" data-hint="ID">
+            <div class="col-xs-3 hint--bottom pull-left" data-hint="ID">
             <i class="fa fa-refresh"></i> timeEstimated:   {{model.timeEstimated}}
             </div>
-            <div class="col-xs-3 hint-bottom pull-left" data-hint="ID">
+            <div class="col-xs-3 hint--bottom pull-left" data-hint="ID">
             <i class="fa fa-refresh"></i> timeLeft:        {{model.timeLeft}}
             </div>
-            <div class="col-xs-3 hint-bottom pull-left" data-hint="ID">
+            <div class="col-xs-3 hint--bottom pull-left" data-hint="ID">
             <i class="fa fa-refresh"></i> timeWorked:      {{model.timeWorked}}
             </div>
-            <div class="col-xs-3 hint-bottom pull-left" data-hint="ID">
+            <div class="col-xs-3 hint--bottom pull-left" data-hint="ID">
             <i class="fa fa-refresh"></i> started:         {{model.started}}
             </div>
-            <div class="col-xs-3 hint-bottom pull-left" data-hint="ID">
+            <div class="col-xs-3 hint--bottom pull-left" data-hint="ID">
             <i class="fa fa-refresh"></i> told:            {{model.told}}
             </div>
-            <div class="col-xs-3 hint-bottom pull-left" data-hint="ID">
+            <div class="col-xs-3 hint--bottom pull-left" data-hint="ID">
             <i class="fa fa-refresh"></i> lastUpdated:     {{model.lastUpdated}}
             </div>
-            <div class="col-xs-3 hint-bottom pull-left" data-hint="ID">
+            <div class="col-xs-3 hint--bottom pull-left" data-hint="ID">
             <i class="fa fa-refresh"></i> resolved:        {{model.resolved}}
             </div>
             -->
@@ -94,7 +94,10 @@
                         {{#if email.isAnEmail }}
                             <div class="email-item">
                                 <p class="pull-right">
-                                    {{moment-from-now email.created}}
+                                    <span class="hint--left" data-hint="{{email.created}}">
+                                        <i class="fa fa-clock-o"></i>
+                                        {{moment-from-now email.created}}
+                                    </span>
                                 </p>
                                 <i class="fa fa-{{email.iconClass}}"></i>
                                 {{email.description}}
@@ -102,11 +105,16 @@
                                 </pre>
                             </div>
                         {{else}}
-                            <p class="pull-right">
-                                {{moment-from-now email.created}}
-                            </p>
-                            <i class="fa fa-{{email.iconClass}}"></i>
-                            {{email.description}}
+                            <div class="email-update">
+                                <p class="pull-right">
+                                    <span class="hint--left" data-hint="{{email.created}}">
+                                        <i class="fa fa-clock-o"></i>
+                                        {{moment-from-now email.created}}
+                                    </span>
+                                </p>
+                                <i class="fa fa-{{email.iconClass}}"></i>
+                                {{email.description}}
+                            </div>
                         {{/if}}
                     {{/each}}
                 </div>
