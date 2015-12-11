@@ -1,4 +1,5 @@
 <div class="email-item-group">
+    {{#if results}}
     {{#each results as |ticket|}}
         {{#link-to 'search.show.ticket' ticket.id tagName="div" class="email-item" href=false}}
             {{#link-to 'search.show.ticket' ticket.id}}
@@ -21,6 +22,9 @@
             {{/link-to}}
         {{/link-to}}
     {{/each}}
+    {{else}}
+    No results
+    {{/if}}
 </div>
 
 {{yield}}

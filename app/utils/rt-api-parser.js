@@ -156,22 +156,24 @@ Attachments: 1859797: (Unnamed) (text/plain / 802b)
 
 function parseSearch(payload, namespace, search_id) {
     payload = payload.replace(/RT.*200 Ok\n\n/, '');
-    // console.log(payload);
+    // console.log(payload.trim());
 
-    let data = _.collect(payload.split('\n\n--\n\n'), (ticket) => {
-        return parseTicketMetadata(ticket, namespace);
-    });
+    let data = [];
+    if (!(payload.trim() === "No matching results.")) {
+        data = _.collect(payload.split('\n\n--\n\n'), (ticket) => {
+            return parseTicketMetadata(ticket, namespace);
+        });
 
-    _.each(data, (ticket) => {
-        // ticket.id = ticket.id.replace("ticket/", "");
+        _.each(data, (ticket) => {
+            // ticket.id = ticket.id.replace("ticket/", "");
 
-        let rto = moment(ticket.lastUpdated);
-        ticket.relativeTimeAgo = rto.fromNow();
-        ticket.lastUpdatedUnixTime = rto.unix();
-    });
-
+            let rto = moment(ticket.lastUpdated);
+            ticket.relativeTimeAgo = rto.fromNow();
+            ticket.lastUpdatedUnixTime = rto.unix();
+        });
+        // console.log(data);
+    }
     data = {"tickets": data};
-    // console.log(data);
     return data;
 }
 
