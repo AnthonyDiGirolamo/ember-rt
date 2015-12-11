@@ -85,7 +85,7 @@ function parseEmail(payload, namespace, message_id, ticket_id) {
         content = _.collect(content[1].split('\n'), (line) => {
             return line.replace(/^         /m, "");
         }).join('\n');
-        content = content.replace(/\n+$/, "");
+        content = content.replace(/(\s*\n+)+$/, "");
     }
 
     // let attachments = _.first(/Attachments: ((.|[\r\n])*)$/.exec(payload));

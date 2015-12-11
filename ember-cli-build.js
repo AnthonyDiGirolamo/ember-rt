@@ -24,6 +24,7 @@ module.exports = function(defaults) {
   app.import('bower_components/bootstrap/dist/js/bootstrap.js');
 
   app.import('bower_components/ace-builds/src-noconflict/ace.js');
+  app.import('bower_components/ace-builds/src-noconflict/keybinding-vim.js');
   app.import('bower_components/ace-builds/src-noconflict/theme-github.js');
   app.import('bower_components/ace-builds/src-noconflict/mode-markdown.js');
   app.import('bower_components/ace-builds/src-noconflict/mode-sh.js');

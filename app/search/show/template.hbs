@@ -1,12 +1,13 @@
 <div id="list" class="">
-    <div class="email-item-group">
-        <a class="btn btn-default btn-sm" {{action "reloadSearch"}}>
-            <i class="fa fa-refresh"></i>Refresh
-        </a>
-    </div>
-
     {{#if model.rtquery}}
         {{search-results results=tickets}}
+
+        <div class="email-item-group-update">
+            <a class="btn btn-default btn-sm" {{action "reloadSearch"}}>
+                <i class="fa fa-refresh"></i>Refresh
+            </a>
+        </div>
+
     {{/if}}
 </div>
 

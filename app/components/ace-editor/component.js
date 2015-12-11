@@ -21,6 +21,7 @@ export default Ember.Component.extend({
         this.editor = window.ace.edit(this.editorSelector);
         this.editor.setTheme('ace/theme/github');
         this.editor.getSession().setMode('ace/mode/markdown');
+        this.editor.setKeyboardHandler("ace/keyboard/vim");
 
         var self = this;
         this.editor.on('change', function() {
