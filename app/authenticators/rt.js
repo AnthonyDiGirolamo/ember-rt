@@ -26,6 +26,20 @@ export default Base.extend({
                 // contentType: 'application/json;charset=utf-8',
                 dataType: 'html'
             }).then((response, textStatus, xhr) => {
+                // Success:
+
+                // RT/4.2.12 200 Ok
+                //
+                // # Invalid object specification: ''
+                //
+                // id:
+
+                // Fail will still return 200 with content:
+
+                // RT/4.2.12 401 Credentials required
+                //
+                // Your username or password is incorrect
+
                 // console.log(xhr);
                 // console.log(xhr.id_token);
                 // console.log(status);

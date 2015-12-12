@@ -3,19 +3,20 @@ import DS from 'ember-data';
 export default DS.Model.extend({
 
     typeToIcon: {
-        "Create": "asterisk",
-        "EmailRecord": "arrow-right",
-        "Correspond": "envelope-o",
-        "Comment": "comment-o",
+        "Create":             "asterisk",
+        "EmailRecord":        "arrow-right",
+        "Correspond":         "envelope-o",
+        "Comment":            "comment-o",
         "CommentEmailRecord": "arrow-right",
-        "Status": "question-circle",
-        "Give": "hand-o-right",
-        "AddLink": "sitemap",
-        "Set": "hand-o-right",
-        "AddWatcher": "eye",
-        "SetWatcher": "eye",
-        "DelWatcher": "eye",
-        "CustomField": "tag"
+        "Status":             "question-circle",
+        "Give":               "hand-o-right",
+        "Set":                "hand-o-right",
+        "Take":               "hand-o-right",
+        "AddLink":            "sitemap",
+        "AddWatcher":         "eye",
+        "SetWatcher":         "eye",
+        "DelWatcher":         "eye",
+        "CustomField":        "tag"
     },
 
     body:          DS.attr('string'),

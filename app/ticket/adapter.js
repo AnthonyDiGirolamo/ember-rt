@@ -12,10 +12,10 @@ export default ApplicationAdapter.extend({
     // ticket search method
     query: function(store, type, query, snapshot) {
         console.log("ticket/adapter query");
-        console.log([store, type, query, snapshot]);
+        // console.log([store, type, query, snapshot]);
 
-        let url = `/REST/1.0/search/ticket?query=${query.query}&format=l`;
-        console.log(url);
+        let url = `/REST/1.0/search/ticket?${Ember.$.param(query)}`;
+        // console.log(url);
         return new Ember.RSVP.Promise((resolve, reject) => {
             Ember.$.ajax(url, 'ticket', {
                 method: 'GET',
